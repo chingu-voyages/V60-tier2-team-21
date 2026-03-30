@@ -37,7 +37,7 @@ coding!
 - Fabirez: [GitHub](https://github.com/fabirez)
 - Kamaal: [GitHub](https://github.com/Kamaal-Azfar)
 - Zahra: [Github](https://github.com/ZahraSoley)
-- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
