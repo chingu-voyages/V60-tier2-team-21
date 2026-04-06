@@ -39,7 +39,4 @@ coding!
 - Zahra: [Github](https://github.com/ZahraSoley)
 - Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
 - Hajar: [GitHub](https://github.com/hajar-nasr)
-
-  ...
-
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Tochi(PRODUCT OWNER): [GitHub]([(https://github.com/Osira01]) / [LinkedIn](https://linkedin.com/in/liaccountname)
