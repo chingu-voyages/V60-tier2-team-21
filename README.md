@@ -40,3 +40,4 @@ coding!
 - Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
 - Hajar: [GitHub](https://github.com/hajar-nasr)
 - Tochi(PRODUCT OWNER): [GitHub]([(https://github.com/Osira01]) / [LinkedIn](https://linkedin.com/in/liaccountname)
+-  Olu: [GitHub](https://github.com/doddy77512)
