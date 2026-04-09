@@ -1,10 +1,10 @@
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 
 export default function Home() {
@@ -22,7 +22,9 @@ export default function Home() {
           </CardContent>
 
           <CardFooter>
-            <button className="text-sm text-blue-500">Get Started</button>
+            <button className="text-sm text-blue-500" type="button">
+              Get Started
+            </button>
           </CardFooter>
         </Card>
       </main>
