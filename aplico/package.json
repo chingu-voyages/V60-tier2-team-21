@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome lint",
-    "check": "biome check . --write"
+    "check": "biome check . --write",
+    "frmt": "biome format . --write",
+    "frmt:check": "biome format ."
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,json,css}": [
@@ -19,6 +21,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^1.7.0",
     "next": "16.2.3",
+    "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
