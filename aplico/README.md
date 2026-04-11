@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aplico
 
-## Getting Started
+A modern job application tracking app built to help you stay organized during your job search. Track applications, monitor progress, and manage your opportunities efficiently in one place.
 
-First, run the development server:
+## 👤 Who is Aplico for ❓
+
+Aplico is designed for:
+
+- Job seekers who want to stay organized during their application process.
+- Developers applying to multiple roles and tracking progress.
+- Anyone preparing for interviews and managing follow-ups.
+- People who prefer a clean, simple system instead of spreadsheets.
+
+Whether you're actively applying or just exploring opportunities, this tool helps you stay on top of your job search.
+
+## ✨ Features
+
+- 📋 Track all your job applications in one dashboard.
+- 🏷️ Categorize applications by status (Applied, Interview, Offer, Rejected).
+- 🔍 Search and filter applications by company, role, or status.
+- 📝 Add notes and details for each application.
+- 📅 Track application dates, follow-ups, and interview stages.
+- 🎯 Responsive UI built for desktop and mobile.
+
+## 🚀 Tech Stack
+
+- **Frontend:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Formatting & Linting:** Biome
+- **Backend:** None included yet (frontend starter app)
+- **Database:** None included yet
+
+## 📂 Project Structure
+
+```
+.
+├── app/                # Next.js app directory (routes & layouts)
+├── components/         # Reusable UI components (shadcn-based)
+├── lib/                # Utilities and helpers
+├── styles/             # Global styles
+├── public/             # Static assets
+├── biome.json          # Biome config
+└── package.json
+```
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/chingu-voyages/V60-tier2-team-21.git
+cd V60-tier2-team-21/aplico
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the app at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Build for production
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Start the production server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Deployment
 
-## Deploy on Vercel
+This project is intended to deploy to a modern platform such as Vercel or Netlify.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Deployment target: TBD
+- Production environment: TBD
+- Continuous deployment: TBD
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧹 Linting & Formatting
+
+This project uses **Biome** for linting and formatting.
+
+### Run lint checks
+
+```bash
+npx biome lint
+```
+
+### Format files
+
+```bash
+npm run format
+```
+
+## 🎨 UI System
+
+The project uses **shadcn/ui**, built on top of Tailwind CSS.
+
+- Accessible and customizable components
+- Utility-first styling
+- Consistent design system
+
+## 👀 Sneak Peek
+
+Here’s a quick look at the app:
+
+### 📊 Dashboard
+
+![Dashboard Screenshot](./public/screenshots/dashboard.png)
+
+### 📝 Application Details
+
+![Applications Details Screenshot](./public/screenshots/applications-details.png)
+
+### ➕ Add New Application
+
+![Add New Application Screenshot](./public/screenshots/add-new-application.png)
+
+## 📄 License
+
+MIT License
+
+## 🛠️ Notes
+
+Parts of this README were generated with the assistance of AI tools and reviewed for accuracy.
