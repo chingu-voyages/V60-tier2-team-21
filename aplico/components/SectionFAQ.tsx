@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import SectionHeader from "@/components/ui/section-header";
 import {
@@ -45,7 +44,7 @@ export default function SectionFAQ() {
   return (
     <section id="faq" className="pb-24 sm:pb-40">
       <SectionHeader
-        title="Frequently asked question"
+        title="Frequently Asked Question"
         description="Answers to common question about Aplico and its features. If you have any other qustions, please contact us."
       />
       <Accordion

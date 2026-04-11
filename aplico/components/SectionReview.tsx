@@ -1,3 +1,12 @@
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import SectionHeader from "@/components/ui/section-header";
 const topMarquee = [
   {
@@ -46,10 +55,10 @@ export default function SectionReview() {
         description="Thousands of user trust Aplico daily. See how it change your job search"
       />
 
-      <div className="group relative py-10 flex max-h-screen flex-col gap-4 overflow-hidden p-2  sm:flex-row border">
+      <div className="group relative py-10 flex max-h-screen flex-col gap-4 overflow-hidden p-2 sm:flex-row">
         {Array.from({ length: 2 }, (_, ix) => (
           <ul
-            className="animate-marquee flex shrink-0 min-w-full flex-col gap-[var(--gap-marquee)] overflow-hidden sm:flex-row animate-marquee-y sm:animate-marquee-x"
+            className="group-hover:[animation-play-state:paused] animate-marquee flex shrink-0 min-w-full flex-col gap-[var(--gap-marquee)] overflow-hidden sm:flex-row animate-marquee-y sm:animate-marquee-x"
             key={ix}
           >
             {topMarquee.map(({ review, name, description }, idx) => {
@@ -59,29 +68,34 @@ export default function SectionReview() {
 
               return (
                 <li
-                  className=" bg-background w-fit rounded-xl border p-4 border-border flex flex-col justify-between"
+                  className="bg-background w-fit rounded-xl p-4 flex flex-col justify-between"
                   key={idx}
                 >
-                  <p className="text-foreground/90 max-w-96 pb-6 leading-relaxed font-normal select-none">
-                    {textSplitted[1]}
-                    <span className="text-accent-foreground font-medium">
-                      {textSplitted[2]}
-                    </span>
-                    {textSplitted[3]}
-                  </p>
-
-                  <div className="flex items-center gap-2">
-                    <div className="size-8 rounded-full bg-linear-30 from-sky-300 to-orange-400" />
-                    <div className="">
-                      <h3 className="text-foreground/90 font-medium">
-                        {" "}
-                        {name}{" "}
-                      </h3>
-                      <p className="text-foreground/50 text-xs font-normal">
-                        {description}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <div className="size-8 rounded-full bg-linear-30 from-sky-300 to-orange-400" />
+                        <div className="flex flex-col">
+                          <h3 className="text-foreground/90 font-medium">
+                            {name}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {" "}
+                            {description}
+                          </p>
+                        </div>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-foreground/90 max-w-96 pb-6 leading-relaxed font-normal select-none">
+                        {textSplitted[1]}
+                        <span className="text-accent-foreground font-medium">
+                          {textSplitted[2]}
+                        </span>
+                        {textSplitted[3]}
                       </p>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 </li>
               );
             })}

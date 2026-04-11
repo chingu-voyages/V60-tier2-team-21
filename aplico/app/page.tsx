@@ -15,9 +15,9 @@ export default function Home() {
         <SectionBento />
         <SectionReview />
         <SectionFAQ />
+      </main>
         <SectionCTA />
         <Footer />
-      </main>
     </div>
   );
 }
