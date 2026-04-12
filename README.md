@@ -147,13 +147,13 @@ Meeting Agenda templates (located in the `/docs` directory in this repo):
 
 ## 👥 Our Team
 
-- 👤 Fabirez: [GitHub](https://github.com/fabirez)
-- 👤 Kamaal: [GitHub](https://github.com/Kamaal-Azfar)
-- 👤 Zahra: [Github](https://github.com/ZahraSoley)
-- 👤 Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
-- 👤 Hajar: [GitHub](https://github.com/hajar-nasr)
-- 👑 Tochi (PRODUCT OWNER): [GitHub]([(https://github.com/Osira01]) / [LinkedIn](https://linkedin.com/in/liaccountname)
-- 👤 Olu: [GitHub](https://github.com/doddy77512)
+- Fabirez: [GitHub](https://github.com/fabirez)
+- Kamaal: [GitHub](https://github.com/Kamaal-Azfar)
+- Zahra: [Github](https://github.com/ZahraSoley)
+- Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
+- Hajar: [GitHub](https://github.com/hajar-nasr)
+- Tochi (PRODUCT OWNER): [GitHub]([(https://github.com/Osira01]) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Olu: [GitHub](https://github.com/doddy77512)
 
 ## 📄 License
 
