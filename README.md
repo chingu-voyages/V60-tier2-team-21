@@ -145,6 +145,16 @@ Meeting Agenda templates (located in the `/docs` directory in this repo):
 - Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
 - Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
 
+## 👥 Our Team
+
+- 👤 Fabirez: [GitHub](https://github.com/fabirez)
+- 👤 Kamaal: [GitHub](https://github.com/Kamaal-Azfar)
+- 👤 Zahra: [Github](https://github.com/ZahraSoley)
+- 👤 Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
+- 👤 Hajar: [GitHub](https://github.com/hajar-nasr)
+- 👑 Tochi (PRODUCT OWNER): [GitHub]([(https://github.com/Osira01]) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- 👤 Olu: [GitHub](https://github.com/doddy77512)
+
 ## 📄 License
 
 MIT License
