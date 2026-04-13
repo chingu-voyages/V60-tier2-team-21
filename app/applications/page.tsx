@@ -1,6 +1,6 @@
 import ApplicationsList from "@/components/applications/ApplicationsList";
 
-const ApplicationsPage = async () => {
+const ApplicationsPage = () => {
   return (
     <main>
       <h1>All Applications</h1>
