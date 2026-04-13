@@ -8,7 +8,7 @@ const ApplicationPage = async ({ params }: { params: { id: string } }) => {
     <>
       <Application id={routeParams.id} />
       <Link href="/applications" className="underline">
-        All Application
+        All Applications
       </Link>
     </>
   );
