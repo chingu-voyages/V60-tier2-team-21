@@ -35,6 +35,8 @@ import {
   LabelList,
 } from "recharts";
 
+import BlurFade from "@/components/ui/blur-fade";
+
 export default function SectionBento() {
   return (
     <section id="features" className="pb-24 sm:pb-40 text-center relative">
@@ -43,10 +45,9 @@ export default function SectionBento() {
         title="Everything you need. Nothing you don't."
         description="A focused set of tools designed for a focused job search."
       />
-
+			
 
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 border">
-
         <div className="w-full h-full border-b grid lg:grid-rows-[1fr_125px]">
           <div className="flex-1 p-4 sm:p-8">
             <BentoApplication />
@@ -65,9 +66,9 @@ export default function SectionBento() {
 
         <div className="w-full h-full border-l border-b grid lg:grid-rows-[1fr_125px]">
           <div className=" p-4 sm:p-8 flex justify-center items-center">
-						<div className="w-full">
-							<ChartAreaLegend />
-						</div>
+            <div className="w-full">
+              <ChartAreaLegend />
+            </div>
           </div>
 
           <div className="text-left p-6 border-t">
@@ -83,9 +84,9 @@ export default function SectionBento() {
 
         <div className="w-full h-full grid lg:grid-rows-[1fr_125px]">
           <div className="p-4 sm:p-8 flex justify-center items-center">
-						<div className="w-full">
-            <ChartBarNegative />
-						</div>
+            <div className="w-full">
+              <ChartBarNegative />
+            </div>
           </div>
 
           <div className="text-left p-6 border-t">
@@ -117,7 +118,6 @@ export default function SectionBento() {
     </section>
   );
 }
-
 
 const chartTrackData = [
   { month: "January", applied: 186, interview: 80, offer: 10 },

@@ -12,7 +12,7 @@ export default function SectionCTA() {
         <SectionHeader
           title="Start tracking today."
           description="Your next hob is out there. Let's make sure you don't miss a single opportunity."
-					cnDescription="text-black/60"
+          cnDescription="blue:text-black/60"
         />
         <Button variant="secondary" size="lg">
           Get started <ArrowRight className="size-4" />

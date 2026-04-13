@@ -1,7 +1,6 @@
 export interface SectionHeaderProps {
-	title: string;
-	description:string;
-	cnTitle?: string;
-	cnDescription?: string;
+  title: string;
+  description: string;
+  cnTitle?: string;
+  cnDescription?: string;
 }
-

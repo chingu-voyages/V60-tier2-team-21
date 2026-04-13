@@ -16,8 +16,8 @@ export default function Home() {
         <SectionReview />
         <SectionFAQ />
       </main>
-        <SectionCTA />
-        <Footer />
+      <SectionCTA />
+      <Footer />
     </div>
   );
 }
