@@ -55,7 +55,7 @@ export default function SectionReview() {
         description="Thousands of user trust Aplico daily. See how it change your job search"
       />
 
-      <div className="group relative py-10 flex max-h-screen flex-col gap-4 overflow-hidden p-2 sm:flex-row">
+      <div className="group relative flex max-h-screen flex-col gap-4 overflow-hidden p-2 sm:flex-row">
         {Array.from({ length: 2 }, (_, ix) => (
           <ul
             className="group-hover:[animation-play-state:paused] animate-marquee flex shrink-0 min-w-full flex-col gap-[var(--gap-marquee)] overflow-hidden sm:flex-row animate-marquee-y sm:animate-marquee-x"
@@ -107,7 +107,7 @@ export default function SectionReview() {
       </div>
 
 
-      <div className="group relative py-10 flex max-h-screen flex-col gap-4 overflow-hidden p-2 sm:flex-row">
+      <div className="group relativ flex max-h-screen flex-col gap-4 overflow-hidden p-2 sm:flex-row">
         {Array.from({ length: 2 }, (_, ix) => (
           <ul
             className="group-hover:[animation-play-state:paused] animate-marquee flex shrink-0 min-w-full flex-col gap-[var(--gap-marquee)] overflow-hidden sm:flex-row animate-marquee-y-rev sm:animate-marquee-x-rev"
