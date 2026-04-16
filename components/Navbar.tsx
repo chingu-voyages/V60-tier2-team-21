@@ -2,11 +2,10 @@
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { useState } from "react";
+import PlaceholderLogo from "@/components/PlaceholderLogo";
 import { ToggleTheme } from "@/components/ToggleTheme";
 import { Button } from "@/components/ui/button";
-import PlaceholderLogo from "@/components/PlaceholderLogo";
 import { navigationLink } from "@/lib/data";
 
 function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {

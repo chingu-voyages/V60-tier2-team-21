@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
-import SectionHeader from "@/components/ui/section-header";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import SectionHeader from "@/components/ui/section-header";
 
 const items = [
   {

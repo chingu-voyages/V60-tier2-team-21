@@ -1,50 +1,42 @@
 "use client";
 
-import SectionHeader from "@/components/ui/section-header";
+import { Building2, Calendar, Map as MapIcon } from "lucide-react";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  LabelList,
+  XAxis,
+} from "recharts";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import {
+  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-  type ChartConfig,
 } from "@/components/ui/chart";
-
-import { Button } from "@/components/ui/button";
-
-import { Building2, Calendar, Map, TrendingUp } from "lucide-react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  XAxis,
-  Bar,
-  BarChart,
-  Cell,
-  LabelList,
-} from "recharts";
-
+import SectionHeader from "@/components/ui/section-header";
 
 export default function SectionBento() {
   return (
     <section id="features" className="pb-24 sm:pb-40 text-center relative">
-
       <SectionHeader
         title="Everything you need. Nothing you don't."
         description="A focused set of tools designed for a focused job search."
       />
-			
 
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 border">
         <div className="w-full h-full border-b grid lg:grid-rows-[1fr_125px]">
@@ -213,7 +205,7 @@ export function BentoApplication() {
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
               <span className="flex items-center gap-1">
-                <Map className="size-4" />
+                <MapIcon className="size-4" />
                 Switwerland
               </span>
 

@@ -1,6 +1,6 @@
-import SectionHeader from "@/components/ui/section-header";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import SectionHeader from "@/components/ui/section-header";
 
 export default function SectionCTA() {
   return (

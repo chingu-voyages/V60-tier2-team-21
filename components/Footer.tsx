@@ -22,7 +22,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold pb-4 text-foreground"> Navigation </h4>
           <ul className="flex flex-col gap-y-2">
-            {navigationLink.map((link, idx) => (
+            {navigationLink.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-base text-foreground">
                   {link.name}

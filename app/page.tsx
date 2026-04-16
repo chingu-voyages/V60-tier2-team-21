@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import SectionBento from "@/components/SectionBento";
-import SectionReview from "@/components/SectionReview";
-import SectionFAQ from "@/components/SectionFAQ";
-import SectionCTA from "@/components/SectionCTA";
 import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import Navbar from "@/components/Navbar";
+import SectionBento from "@/components/SectionBento";
+import SectionCTA from "@/components/SectionCTA";
+import SectionFAQ from "@/components/SectionFAQ";
+import SectionReview from "@/components/SectionReview";
 
 export default function Home() {
   return (

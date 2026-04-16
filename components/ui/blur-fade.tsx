@@ -1,6 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, Variants } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  type Variants,
+} from "motion/react";
 import { useRef } from "react";
 
 interface BlurFadeProps {
@@ -31,7 +36,7 @@ const BlurFade = ({
   const ref = useRef(null);
   const inViewResult = useInView(ref, {
     once: true,
-    ...(inViewMargin ? { margin: inViewMargin as any } : {})
+    ...(inViewMargin ? { margin: inViewMargin as any } : {}),
   });
   const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {

@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import type { SectionHeaderProps } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 export default function SectionHeader({
   title,
