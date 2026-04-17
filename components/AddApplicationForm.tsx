@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
 export default function AddApplicationForm() {
   const [applicationFormData, setApplicationFormData] = useState({
@@ -88,7 +89,7 @@ export default function AddApplicationForm() {
             <option value="Rejected">Rejected</option>
           </select>
           <label htmlFor="notes">Notes</label>
-          <textarea
+          <Textarea
             name="notes"
             id="notes"
             placeholder="My thoughts..."
