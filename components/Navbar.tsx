@@ -53,7 +53,7 @@ export default function Navbar() {
   return (
     <div className="flex items-center justify-between gap-8 px-4 sm:px-6 h-(--height-navbar) w-full border-b fixed top-0 left-0 backdrop-blur-lg z-50 [--height-navbar:80px]">
       <Link href="/">
-        <PlaceholderLogo className="w-43 sm:size-auto" />
+        <PlaceholderLogo className="text-foreground" />
       </Link>
 
       <div className="flex items-center sm:gap-6 gap-2.5">

@@ -10,7 +10,7 @@ export default function Footer() {
     >
       <div className="flex flex-col sm:flex-row gap-10 sm:gap-y-0 justify-between items-start">
         <Link href="/">
-          <PlaceholderLogo className="" />
+          <PlaceholderLogo className="text-foreground" />
         </Link>
 
         <p className="max-w-(--breakpoint-sm) text-lg/7 font-medium text-muted-foreground">
