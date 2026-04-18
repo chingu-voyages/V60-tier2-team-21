@@ -38,7 +38,7 @@ export default function SectionBento() {
         description="A focused set of tools designed for a focused job search."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 border">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 border rounded-sm">
         <div className="w-full h-full border-b grid lg:grid-rows-[1fr_125px]">
           <div className="flex-1 p-4 sm:p-8">
             <BentoApplication />
@@ -189,44 +189,75 @@ export function ChartAreaLegend() {
 
 export function BentoApplication() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex flex-col items-start">
-          <h3 className="font-semibold text-lg">Google</h3>
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex justify-between items-center">
+            <div className="flex flex-col items-start">
+              <h3 className="font-semibold text-lg">Google</h3>
 
-          <p className="text-muted-foreground font-medium mb-2">
-            Software developer
-          </p>
-        </CardTitle>
-      </CardHeader>
+              <p className="text-muted-foreground font-medium mb-2">
+                Software developer
+              </p>
+            </div>
+            <Badge variant="green">Applied</Badge>
+          </CardTitle>
+        </CardHeader>
 
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1 min-w-0">
-            <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <MapIcon className="size-4" />
-                Switwerland
-              </span>
+        <CardContent className="p-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <MapIcon className="size-4" />
+                  Switzerland
+                </span>
 
-              <span className="flex items-center gap-1">
-                <Building2 className="size-4" />
-                Tech
-              </span>
-
-              <span className="flex items-center gap-1">
-                <Calendar className="size-4" />
-                {/* {format(new Date(application.applicationDate), "MMM d, yyyy")} */}
-                20, Jan 2026
-              </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="size-4" />
+                  {/* {format(new Date(application.applicationDate), "MMM d, yyyy")} */}
+                  20, Jan 2026
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline"> See more details </Button>
-      </CardFooter>
-    </Card>
+        </CardContent>
+      </Card>
+
+      <Card className="-translate-y-9 hidden sm:flex">
+        <CardHeader>
+          <CardTitle className="flex justify-between items-center">
+            <div className="flex flex-col items-start">
+              <h3 className="font-semibold text-lg">Amazon</h3>
+
+              <p className="text-muted-foreground font-medium mb-2">
+                Software Dev Engineer
+              </p>
+            </div>
+            <Badge variant="yellow">Offer</Badge>
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent className="p-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <MapIcon className="size-4" />
+                  Brazil
+                </span>
+
+                <span className="flex items-center gap-1">
+                  <Calendar className="size-4" />
+                  {/* {format(new Date(application.applicationDate), "MMM d, yyyy")} */}
+                  12, Mar 2026
+                </span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
   );
 }
 export function BentoStatus() {

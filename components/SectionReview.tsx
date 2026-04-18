@@ -112,10 +112,10 @@ export default function SectionReview() {
         <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-1/4 w-full bg-gradient-to-t from-20% sm:inset-y-0 sm:right-0 sm:h-full sm:w-1/4 sm:bg-gradient-to-l sm:left-auto" />
       </div>
 
-      <div className="group relativ flex max-h-screen flex-col gap-4 overflow-hidden p-2 sm:flex-row">
+      <div className="group relative hidden sm:flex max-h-screen gap-4 overflow-hidden p-2 sm:flex-row">
         {Array.from({ length: 2 }, (_, ix) => (
           <ul
-            className="group-hover:[animation-play-state:paused] animate-marquee flex shrink-0 min-w-full flex-col gap-[var(--gap-marquee)] overflow-hidden sm:flex-row animate-marquee-y-rev sm:animate-marquee-x-rev"
+            className="group-hover:[animation-play-state:paused] animate-marquee flex shrink-0 min-w-full gap-[var(--gap-marquee)] overflow-hidden sm:flex-row sm:animate-marquee-x-rev"
             key={uuidv4()}
           >
             {topMarquee.map(({ id, review, name, description }) => {

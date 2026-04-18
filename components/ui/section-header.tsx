@@ -11,21 +11,23 @@ export default function SectionHeader({
     <header className="text-center">
       <h3
         className={cn(
-          "text-5xl font-medium leading-none tracking-tighter sm:text-6xl text-balance pb-6",
+          "text-4xl font-medium leading-none tracking-tighter md:text-7xl pb-6 text-balance",
           cnTitle,
         )}
       >
         {title}
       </h3>
 
-      <p
-        className={cn(
-          "mx-auto max-w-(--breakpoint-md) px-2 text-lg/7 font-medium text-muted-foreground pb-12",
-          cnDescription,
-        )}
-      >
-        {description}
-      </p>
+      {description && (
+        <p
+          className={cn(
+            "mx-auto max-w-(--breakpoint-md) text-lg/7 font-medium text-muted-foreground pb-12",
+            cnDescription,
+          )}
+        >
+          {description}
+        </p>
+      )}
     </header>
   );
 }

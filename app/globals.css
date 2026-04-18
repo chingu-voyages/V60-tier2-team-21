@@ -47,6 +47,10 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --shadow-badge:
+    0 0 0 1px oklch(from var(--foreground) l c h / 0.08),
+    0 1px 2px -0.5px oklch(from var(--foreground) l c h / 0.12),
+    0 2px 4px -2px oklch(from var(--foreground) l c h / 0.1);
 
   --animate-marquee-x: marquee-x 20s infinite linear;
   --animate-marquee-y: marquee-y 20s infinite linear;
@@ -184,9 +188,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
