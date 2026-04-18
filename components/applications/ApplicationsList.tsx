@@ -14,7 +14,7 @@ const ApplicationsList = () => {
             <li key={app.id} className="cursor-pointer">
               <Link href={`/application/${app.id}`} className="py-4 block">
                 <p>{app.role}</p>
-                <p>{app.company}</p>
+                <p>{app.companyName}</p>
                 <p>{app.status}</p>
               </Link>
               <hr />

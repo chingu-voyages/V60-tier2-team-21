@@ -11,7 +11,7 @@ const Application = ({ id }: { id: string }) => {
     <div>
       <p>{application.id}</p>
       <p>{application.role}</p>
-      <p>{application.company}</p>
+      <p>{application.companyName}</p>
       <p>{application.status}</p>
     </div>
   );
