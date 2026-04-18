@@ -1,8 +1,11 @@
 export interface Application {
   id: string;
-  company: string;
+  companyName: string;
+  status: "Applied" | "pending" | "interviewing" | "rejected" | "offered";
   role: string;
-  status: "pending" | "interviewing" | "rejected" | "offered";
+  date: string;
+  location: string;
+  notes: string;
 }
 
 export interface ApplicationsState {
