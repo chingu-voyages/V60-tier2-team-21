@@ -1,6 +1,14 @@
 "use client";
 
+import { Calendar, MapIcon, PenTool } from "lucide-react";
 import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -10,7 +18,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { Card } from "./ui/card";
 
 export type ApplicationStatus = "Applied" | "Interview" | "Offer" | "Rejected";
 
@@ -138,8 +145,9 @@ const ApplicationsDataTable = () => {
   const [openNote, setOpenNote] = useState<null | number>(null);
 
   return (
-    <div className="rounded-xl border border-border bg-card">
-      <Table className="w-full">
+    <div className="rounded-xl md:border border-border bg-card ">
+      {/* larger screens=> table */}
+      <Table className="hidden md:block w-full">
         <TableHeader>
           <TableRow className="bg-muted/70 hover:bg-muted/70 cursor-default">
             {tableColumns.map((col) => (
@@ -181,14 +189,14 @@ const ApplicationsDataTable = () => {
               </TableCell>
 
               <TableCell className="px-2.5 py-4">
-                <span
+                <p
                   className={cn(
                     "flex justify-center rounded-full border px-2.5 py-1 text-xs font-medium",
                     getStatusStyles(application.status),
                   )}
                 >
                   {application.status}
-                </span>
+                </p>
               </TableCell>
 
               <TableCell className="relative flex justify-center items-center pr-5 py-4 text-lg font-medium">
@@ -223,6 +231,60 @@ const ApplicationsDataTable = () => {
           ))}
         </TableBody>
       </Table>
+
+      {/* smaller screens=> cards */}
+      <ul className="md:hidden p-8">
+        {applications.map((application) => (
+          <li key={application.id}>
+            <Card className="mb-2.5">
+              <CardHeader className="flex justify-between">
+                <CardTitle className="flex flex-col items-start">
+                  <h3 className="font-semibold text-lg mb-0.85">
+                    {application.companyName}
+                  </h3>
+                  <p className="text-muted-foreground font-medium mb-2">
+                    {application.role}
+                  </p>
+                </CardTitle>
+                <div className="w-1/3 ">
+                  <p
+                    className={cn(
+                      "w-full flex justify-center rounded-full border px-2.5 py-1 text-xs font-medium",
+                      getStatusStyles(application.status),
+                    )}
+                  >
+                    {application.status}
+                  </p>
+                </div>
+              </CardHeader>
+
+              <CardContent className="p-4 pb-2">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap justify-between items-center text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <MapIcon className="size-4" />
+                        {application.location}
+                      </span>
+
+                      <span className="flex items-center gap-1 pl-4">
+                        <Calendar className="size-4" />
+                        {application.dateApplied}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <p className="w-full flex font-lighter text-foreground/90 gap-1.5">
+                  <PenTool className="size-4 shrink-0 mt-0.5" />
+                  {application.notes}
+                </p>
+              </CardFooter>
+            </Card>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
