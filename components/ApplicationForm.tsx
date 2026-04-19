@@ -16,7 +16,7 @@ import {
 } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 
-export default function AddApplicationForm() {
+export default function ApplicationForm() {
   const [applicationFormData, setApplicationFormData] = useState({
     companyName: "",
     role: "",

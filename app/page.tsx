@@ -1,4 +1,4 @@
-import AddApplicationFrom from "@/components/AddApplicationForm";
+import ApplicationFrom from "@/components/ApplicationForm";
 import {
   Card,
   CardContent,
@@ -28,7 +28,7 @@ export default function Home() {
             </button>
           </CardFooter>
         </Card>
-        <AddApplicationFrom />
+        <ApplicationFrom />
       </main>
     </div>
   );
