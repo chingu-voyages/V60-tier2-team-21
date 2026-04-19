@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import Application from "@/components/applications/Application";
+import ApplicationDetails from "@/components/applications/ApplicationDetails";
 import { Button } from "@/components/ui/button";
 
 const ApplicationPage = async ({ params }: { params: { id: string } }) => {
@@ -15,7 +15,7 @@ const ApplicationPage = async ({ params }: { params: { id: string } }) => {
         <ChevronLeft className="size-4" />
         Applications
       </Link>
-      <Application id={id} />
+      <ApplicationDetails id={id} />
     </>
   );
 };

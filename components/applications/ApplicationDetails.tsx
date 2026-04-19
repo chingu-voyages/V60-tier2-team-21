@@ -1,13 +1,20 @@
 "use client";
 
-import { ArrowLeft, Hash, Map as MapIcon, Pencil, Trash2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  Hash,
+  Map as MapIcon,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
-const Application = ({ id }: { id: string }) => {
+const ApplicationDetails = ({ id }: { id: string }) => {
   const application = useApplicationsStore((state) => state.applications[id]);
 
   if (!application) {
@@ -65,6 +72,17 @@ const Application = ({ id }: { id: string }) => {
           <Hash className="size-4 text-muted-foreground" />
           <span>{application.id}</span>
         </div>
+
+        <div className="flex gap-3 items-center">
+          <Calendar className="size-4 text-muted-foreground" />
+          <span>
+            {new Intl.DateTimeFormat(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            }).format(new Date(application.date))}
+          </span>
+        </div>
       </div>
 
       <Card className="max-w-(--breakpoint-xl)">
@@ -79,4 +97,4 @@ const Application = ({ id }: { id: string }) => {
   );
 };
 
-export default Application;
+export default ApplicationDetails;
