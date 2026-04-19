@@ -1,4 +1,4 @@
-import { type Application, ApplicationsStatus } from "./types";
+import { type Application, ApplicationStatus } from "./types";
 
 // fake applications until we make it dynamic
 export const INITIAL_APPLICATIONS: Record<string, Application> = {
@@ -6,7 +6,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     id: "app-1",
     companyName: "Starlight Labs",
     role: "Product Designer",
-    status: ApplicationsStatus.Pending,
+    status: ApplicationStatus.Pending,
     date: "2026-03-14",
     location: "Remote",
     notes: "Referred by Alex from the design community.",
@@ -15,7 +15,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     id: "app-2",
     companyName: "Neonbyte Health",
     role: "Frontend Engineer",
-    status: ApplicationsStatus.Interviewing,
+    status: ApplicationStatus.Interviewing,
     date: "2026-03-22",
     location: "Berlin, Germany",
     notes: "Technical interview scheduled for next week.",
@@ -24,7 +24,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     id: "app-3",
     companyName: "Willow Financial",
     role: "Frontend Engineer",
-    status: ApplicationsStatus.Offered,
+    status: ApplicationStatus.Offered,
     date: "2026-02-05",
     location: "London, UK",
     notes: "Offer received, negotiating compensation.",
@@ -33,7 +33,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     id: "app-4",
     companyName: "Pioneer AI",
     role: "Machine Learning Engineer",
-    status: ApplicationsStatus.Offered,
+    status: ApplicationStatus.Offered,
     date: "2026-01-18",
     location: "San Francisco, CA",
     notes: "Rejected after final round, good feedback for next time.",
@@ -42,7 +42,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     id: "app-5",
     companyName: "Catalyst Studios",
     role: "Growth Marketing Lead",
-    status: ApplicationsStatus.Pending,
+    status: ApplicationStatus.Pending,
     date: "2026-04-02",
     location: "New York, NY",
     notes: "Applied via company website, awaiting response.",

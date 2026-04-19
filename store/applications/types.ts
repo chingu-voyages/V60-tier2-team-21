@@ -1,4 +1,4 @@
-export enum ApplicationsStatus {
+export enum ApplicationStatus {
   Applied = "Applied",
   Pending = "Pending",
   Interviewing = "Interviewing",
@@ -8,7 +8,7 @@ export enum ApplicationsStatus {
 export interface Application {
   id: string;
   companyName: string;
-  status: ApplicationsStatus;
+  status: ApplicationStatus;
   role: string;
   date: string;
   location: string;

@@ -11,23 +11,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { ApplicationsStatus } from "@/store/applications/types";
+import { ApplicationStatus } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
 interface Props {
   applicationId: string;
 }
 
-const STATUS_STYLES: Record<ApplicationsStatus, string> = {
-  [ApplicationsStatus.Applied]:
+const STATUS_STYLES: Record<ApplicationStatus, string> = {
+  [ApplicationStatus.Applied]:
     "bg-status-applied text-status-applied-foreground",
-  [ApplicationsStatus.Pending]:
+  [ApplicationStatus.Pending]:
     "bg-status-pending text-status-pending-foreground",
-  [ApplicationsStatus.Interviewing]:
+  [ApplicationStatus.Interviewing]:
     "bg-status-interviewing text-status-interviewing-foreground",
-  [ApplicationsStatus.Rejected]:
+  [ApplicationStatus.Rejected]:
     "bg-status-rejected text-status-rejected-foreground",
-  [ApplicationsStatus.Offered]:
+  [ApplicationStatus.Offered]:
     "bg-status-offered text-status-offered-foreground",
 };
 
@@ -38,7 +38,7 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
 
   const application = applications[applicationId];
 
-  const handleStatusChange = (value: ApplicationsStatus) => {
+  const handleStatusChange = (value: ApplicationStatus) => {
     updateApplication(applicationId, { status: value });
   };
 
@@ -61,10 +61,10 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
           <DropdownMenuRadioGroup
             value={application.status}
             onValueChange={(value) =>
-              handleStatusChange(value as ApplicationsStatus)
+              handleStatusChange(value as ApplicationStatus)
             }
           >
-            {Object.values(ApplicationsStatus).map((status) => {
+            {Object.values(ApplicationStatus).map((status) => {
               return (
                 <DropdownMenuRadioItem
                   value={status}
