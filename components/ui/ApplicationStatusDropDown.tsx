@@ -64,14 +64,14 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
               handleStatusChange(value as ApplicationsStatus)
             }
           >
-            {Object.values(ApplicationsStatus).map((s) => {
+            {Object.values(ApplicationsStatus).map((status) => {
               return (
                 <DropdownMenuRadioItem
-                  value={s}
-                  key={s}
+                  value={status}
+                  key={status}
                   className="cursor-pointer font-medium uppercase text-xs"
                 >
-                  {s}
+                  {status}
                 </DropdownMenuRadioItem>
               );
             })}
