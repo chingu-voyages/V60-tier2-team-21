@@ -5,6 +5,15 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { Textarea } from "./ui/textarea";
 
 export default function AddApplicationForm() {
@@ -38,7 +47,7 @@ export default function AddApplicationForm() {
     <Card className="w-full max-w-md">
       <CardContent>
         <form className="flex flex-col gap-3" onSubmit={handleFormSubmit}>
-          <label htmlFor="company-name">Company Name</label>
+          <Label htmlFor="company-name">Company Name</Label>
           <Input
             name="companyName"
             id="company-name"
@@ -47,7 +56,7 @@ export default function AddApplicationForm() {
             required
             onChange={handleChange}
           />
-          <label htmlFor="role">Role</label>
+          <Label htmlFor="role">Role</Label>
           <Input
             name="role"
             id="role"
@@ -56,7 +65,7 @@ export default function AddApplicationForm() {
             required
             onChange={handleChange}
           />
-          <label htmlFor="date">Date Applied</label>
+          <Label htmlFor="date">Date Applied</Label>
           <Input
             name="date"
             id="date"
@@ -65,7 +74,7 @@ export default function AddApplicationForm() {
             required
             onChange={handleChange}
           />
-          <label htmlFor="location">Location</label>
+          <Label htmlFor="location">Location</Label>
           <Input
             name="location"
             id="location"
@@ -73,22 +82,26 @@ export default function AddApplicationForm() {
             placeholder="e.g. Remote (USA)"
             onChange={handleChange}
           />
-          <label htmlFor="status">Status</label>
-
-          <select
-            className="block"
-            id="status"
-            name="status"
+          <Label htmlFor="status">Status</Label>
+          <Select
             defaultValue={applicationFormData.status}
-            required
-            onChange={handleChange}
+            onValueChange={(value) => {
+              setApplicationFormData({ ...applicationFormData, status: value });
+            }}
           >
-            <option value="Applied">Applied</option>
-            <option value="Interview">Interview</option>
-            <option value="Offer">Offer</option>
-            <option value="Rejected">Rejected</option>
-          </select>
-          <label htmlFor="notes">Notes</label>
+            <SelectTrigger id="status" className="w-45">
+              <SelectValue placeholder="Theme" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="Applied">Applied</SelectItem>
+                <SelectItem value="Interview">Interview</SelectItem>
+                <SelectItem value="Offer">Offer</SelectItem>
+                <SelectItem value="Rejected">Rejected</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Label htmlFor="notes">Notes</Label>
           <Textarea
             name="notes"
             id="notes"
