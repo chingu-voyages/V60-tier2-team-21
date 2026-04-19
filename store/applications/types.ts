@@ -1,7 +1,7 @@
 export interface Application {
   id: string;
   companyName: string;
-  status: "Applied" | "pending" | "interviewing" | "rejected" | "offered";
+  status: "applied" | "pending" | "interviewing" | "rejected" | "offered";
   role: string;
   date: string;
   location: string;
