@@ -27,9 +27,7 @@ export default function ApplicationForm() {
   });
 
   function handleChange(
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     setApplicationFormData({
       ...applicationFormData,
