@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
+import { ApplicationStatusDropDown } from "../ui/ApplicationStatusDropDown";
 
 const ApplicationsList = () => {
   const applications = useApplicationsStore((state) => state.applications);
@@ -15,8 +16,9 @@ const ApplicationsList = () => {
               <Link href={`/application/${app.id}`} className="py-4 block">
                 <p>{app.role}</p>
                 <p>{app.companyName}</p>
-                <p>{app.status}</p>
               </Link>
+
+              <ApplicationStatusDropDown applicationId={app.id} />
               <hr />
             </li>
           );
