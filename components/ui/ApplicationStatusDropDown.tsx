@@ -38,6 +38,8 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
 
   const application = applications[applicationId];
 
+  if (!application) return null;
+
   const handleStatusChange = (value: ApplicationStatus) => {
     updateApplication(applicationId, { status: value });
   };
