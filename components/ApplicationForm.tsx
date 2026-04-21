@@ -88,7 +88,7 @@ export default function ApplicationForm() {
             }}
           >
             <SelectTrigger id="status" className="w-45">
-              <SelectValue placeholder="Theme" />
+              <SelectValue placeholder="Select Status" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
