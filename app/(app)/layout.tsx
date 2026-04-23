@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AppLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,20 @@ export default function AppLayout({
 }>) {
   return (
     <div>
-      <p>I am App layout</p>
+      <ul>
+        <li>
+          <Link href="/dashboard">Dashboard</Link>
+        </li>
+        <li>
+          <Link href="/applications">Applications</Link>
+        </li>
+        <li>
+          <Link href="/new-entry">New Entry</Link>
+        </li>
+        <li>
+          <Link href="/analytics">Analytics</Link>
+        </li>
+      </ul>
       {children}
     </div>
   );
