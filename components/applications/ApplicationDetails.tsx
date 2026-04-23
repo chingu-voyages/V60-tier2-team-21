@@ -34,13 +34,13 @@ const ApplicationDetails = ({ id }: { id: string }) => {
 
   return (
     <div>
-      <header className="flex justify-between items-center">
+      <header className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
         <div>
           <div className="flex gap-4 items-center">
             <h1 className="text-2xl font-semibold">
               {application.companyName}
             </h1>
-            <Badge variant={application.status}>
+            <Badge variant={application.status.toLowerCase()}>
               <p>{application.status}</p>
             </Badge>
           </div>
@@ -50,7 +50,7 @@ const ApplicationDetails = ({ id }: { id: string }) => {
           </p>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-2 sm:gap-4 pb-12 sm:pb-0">
           <Button variant="outline">
             <Pencil className="size-4" />
             Edit
@@ -62,20 +62,20 @@ const ApplicationDetails = ({ id }: { id: string }) => {
         </div>
       </header>
 
-      <div className="flex gap-6 items-center pb-12 text-base">
+      <div className="flex flex-wrap gap-x-10 gap-y-4 items-center pb-12 text-base">
         <div className="flex gap-3 items-center">
-          <MapIcon className="size-4 text-muted-foreground" />
-          <span>{application.location}</span>
+          <MapIcon className="size-4  text-muted-foreground" />
+          <span className="text-sm sm:text-base">{application.location}</span>
         </div>
 
         <div className="flex gap-3 items-center">
           <Hash className="size-4 text-muted-foreground" />
-          <span>{application.id}</span>
+          <span className="text-sm sm:text-base">{application.id}</span>
         </div>
 
         <div className="flex gap-3 items-center">
           <Calendar className="size-4 text-muted-foreground" />
-          <span>
+          <span className="text-sm sm:text-base">
             {new Intl.DateTimeFormat(undefined, {
               year: "numeric",
               month: "short",
