@@ -8,10 +8,7 @@ export default function AppLayout({
 }>) {
   return (
     <div className="grid grid-cols-[256px_1fr] min-h-screen">
-      <div className="h-screen border-r px-4 py-6">
-        <Placeholderlogo className="mb-6" />
-        <Sidebar />
-      </div>
+      <Sidebar />
       <main className="mx-auto w-full max-w-2xl py-4">{children}</main>
     </div>
   );

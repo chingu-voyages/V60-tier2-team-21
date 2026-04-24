@@ -7,6 +7,8 @@ import {
 
 import Link from "next/link";
 
+import Placeholderlogo from "./PlaceholderLogo";
+
 export default function Sidebar() {
   const navLinks = [
     { href: "/dashboard", name: "Dashboard", icon: LayoutDashboard },
@@ -26,5 +28,10 @@ export default function Sidebar() {
     );
   });
 
-  return <ul className="flex flex-col gap-4">{sideBarElements}</ul>;
+  return (
+    <div className="h-screen border-r px-4 py-6">
+      <Placeholderlogo className="mb-6" />
+      <ul className="flex flex-col gap-4">{sideBarElements}</ul>
+    </div>
+  );
 }
