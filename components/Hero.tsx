@@ -41,7 +41,7 @@ export default function Hero() {
       </BlurFade>
 
       <BlurFade delay={BLUR_FADE_DELAY * 5}>
-        <div className="rounded-2xl w-full aspect-video bg-background border p-4 bg-ring/20 ">
+        <div className="rounded-2xl w-full aspect-video border p-4 bg-ring/20 ">
           <div className="rounded-xl w-full h-full bg-background"> </div>
         </div>
       </BlurFade>
