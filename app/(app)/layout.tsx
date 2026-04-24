@@ -22,7 +22,7 @@ export default function AppLayout({
   const sideBarElements = navLinks.map((navLink) => {
     return (
       <li key={navLink.href}>
-        <Link className="flex gap-1" href={navLink.href}>
+        <Link className="flex gap-3" href={navLink.href}>
           <navLink.icon />
           {navLink.name}
         </Link>
