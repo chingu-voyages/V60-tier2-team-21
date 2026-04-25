@@ -3,9 +3,9 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Placeholderlogo from "@/components/PlaceholderLogo";
 import { Button } from "@/components/ui/button";
 import { sideLinks } from "@/lib/data";
-import Placeholderlogo from "./PlaceholderLogo";
 
 function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
   return (
@@ -31,7 +31,8 @@ function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
           >
             <Link
               href={link.href}
-              className="text-xl font-semibold text-foreground "
+              className="text-xl font-semibold text-foreground"
+              onClick={handleHamburger}
             >
               {link.name}
             </Link>
@@ -47,6 +48,10 @@ export default function Sidebar() {
 
   function handleHamburger() {
     setHamburger((prev) => !prev);
+  }
+
+  function handleCloseHamburger() {
+    setHamburger(false);
   }
 
   const sideBarElements = sideLinks.map((sideLink) => {
@@ -67,7 +72,7 @@ export default function Sidebar() {
         <Menu />
       </Button>
       <ul className="hidden sm:flex flex-col gap-4">{sideBarElements}</ul>
-      {hamburger && <HamburgerOpen handleHamburger={handleHamburger} />}
+      {hamburger && <HamburgerOpen handleHamburger={handleCloseHamburger} />}
     </div>
   );
 }
