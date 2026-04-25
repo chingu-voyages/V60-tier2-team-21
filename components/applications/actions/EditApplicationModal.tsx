@@ -36,13 +36,16 @@ const EditApplicationModal = ({ application, onClose }: Props) => {
           <XIcon />
         </Button>
 
-        <ApplicationForm
-          application={application}
-          onSubmit={(application) => {
-            updateApplication(application.id, application);
-            onClose();
-          }}
-        />
+        <div className="w-full max-w-xl flex items-center flex-col gap-4">
+          <h1 className="font-medium text-2xl">Edit Application</h1>
+          <ApplicationForm
+            application={application}
+            onSubmit={(application) => {
+              updateApplication(application.id, application);
+              onClose();
+            }}
+          />
+        </div>
       </div>
     </div>
   );
