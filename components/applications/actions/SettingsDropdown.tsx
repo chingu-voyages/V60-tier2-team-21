@@ -45,13 +45,13 @@ const SettingsDropDown = ({ applicationId, onEdit }: Props) => {
             <EllipsisVertical size={18} className="md:hidden" />
           </span>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-status-dropdown text-status-dropdown-foreground">
+        <DropdownMenuContent>
           <DropdownMenuGroup>
             <DropdownMenuItem className="cursor-pointer" onClick={onEdit}>
               <CogIcon size={16} /> <span>Edit</span>
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="cursor-pointer text-red-300"
+              className="cursor-pointer text-red-400"
               onClick={() => {
                 setDialogOpen(true);
               }}
