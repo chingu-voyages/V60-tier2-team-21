@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
-
+import { v4 as uuid4 } from "uuid";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  type Application,
+  ApplicationStatus,
+} from "@/store/applications/types";
+import useApplicationsStore from "@/store/applications/useApplicationsStore";
 import {
   Select,
   SelectContent,
@@ -16,15 +21,29 @@ import {
 } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 
-export default function ApplicationForm() {
-  const [applicationFormData, setApplicationFormData] = useState({
-    companyName: "",
-    role: "",
-    date: "",
-    location: "",
-    status: "Applied",
-    notes: "",
-  });
+interface Props {
+  application?: Application;
+  onSubmit?: (application: Application) => void;
+}
+
+const INITIAL_APPLICATION = {
+  companyName: "",
+  role: "",
+  location: "",
+  notes: "",
+  date: "",
+};
+
+export default function ApplicationForm({ application, onSubmit }: Props) {
+  const [applicationFormData, setApplicationFormData] = useState(
+    application || {
+      ...INITIAL_APPLICATION,
+      id: uuid4(),
+      status: ApplicationStatus.Applied,
+    },
+  );
+
+  const { addApplication } = useApplicationsStore();
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -38,7 +57,10 @@ export default function ApplicationForm() {
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    console.log("Form Submitted with", applicationFormData);
+    // handle onSubmit if it's passed, to handle cases like editing application
+    if (onSubmit) return onSubmit(applicationFormData);
+
+    addApplication(applicationFormData);
   }
 
   return (
@@ -53,6 +75,7 @@ export default function ApplicationForm() {
             placeholder="e.g ABC Corp."
             required
             onChange={handleChange}
+            value={applicationFormData.companyName}
           />
           <Label htmlFor="role">Role</Label>
           <Input
@@ -62,6 +85,7 @@ export default function ApplicationForm() {
             placeholder="e.g. Project Manager"
             required
             onChange={handleChange}
+            value={applicationFormData.role}
           />
           <Label htmlFor="date">Date Applied</Label>
           <Input
@@ -71,6 +95,7 @@ export default function ApplicationForm() {
             placeholder="Date Applied"
             required
             onChange={handleChange}
+            value={applicationFormData.date}
           />
           <Label htmlFor="location">Location</Label>
           <Input
@@ -79,12 +104,16 @@ export default function ApplicationForm() {
             type="text"
             placeholder="e.g. Remote (USA)"
             onChange={handleChange}
+            value={applicationFormData.location}
           />
           <Label htmlFor="status">Status</Label>
           <Select
             defaultValue={applicationFormData.status}
             onValueChange={(value) => {
-              setApplicationFormData({ ...applicationFormData, status: value });
+              setApplicationFormData({
+                ...applicationFormData,
+                status: value as ApplicationStatus,
+              });
             }}
           >
             <SelectTrigger id="status" className="w-45">
@@ -92,10 +121,13 @@ export default function ApplicationForm() {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="Applied">Applied</SelectItem>
-                <SelectItem value="Interview">Interview</SelectItem>
-                <SelectItem value="Offer">Offer</SelectItem>
-                <SelectItem value="Rejected">Rejected</SelectItem>
+                {Object.values(ApplicationStatus).map((status) => {
+                  return (
+                    <SelectItem value={status} key={status}>
+                      {status}
+                    </SelectItem>
+                  );
+                })}
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -106,6 +138,7 @@ export default function ApplicationForm() {
             placeholder="My thoughts..."
             className="block"
             onChange={handleChange}
+            value={applicationFormData.notes}
           />
           <Button type="submit">Submit</Button>
         </form>
