@@ -1,24 +1,11 @@
 "use client";
 
-import {
-  ChartColumnBig,
-  CirclePlus,
-  Folder,
-  LayoutDashboard,
-  Menu,
-  X,
-} from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { sideLinks } from "@/lib/data";
 import Placeholderlogo from "./PlaceholderLogo";
-
-const navLinks = [
-  { href: "/dashboard", name: "Dashboard", icon: LayoutDashboard },
-  { href: "/applications", name: "Applications", icon: Folder },
-  { href: "/new-entry", name: "New Entry", icon: CirclePlus },
-  { href: "/analytics", name: "Analytics", icon: ChartColumnBig },
-];
 
 function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
   return (
@@ -34,7 +21,7 @@ function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
       </header>
 
       <ul className="flex flex-col gap-4 px-4 sm:px-6">
-        {navLinks.map((link, idx) => (
+        {sideLinks.map((link, idx) => (
           <li
             key={link.href}
             className={`py-2 starting:opacity-0 starting:-translate-y-5 opacity-100 transition-[opacity,translate] duration-500 translate-y-0 border-b`}
@@ -62,12 +49,12 @@ export default function Sidebar() {
     setHamburger((prev) => !prev);
   }
 
-  const sideBarElements = navLinks.map((navLink) => {
+  const sideBarElements = sideLinks.map((sideLink) => {
     return (
-      <li key={navLink.href}>
-        <Link className="flex gap-3" href={navLink.href}>
-          <navLink.icon />
-          {navLink.name}
+      <li key={sideLink.href}>
+        <Link className="flex gap-3" href={sideLink.href}>
+          <sideLink.icon />
+          {sideLink.name}
         </Link>
       </li>
     );
