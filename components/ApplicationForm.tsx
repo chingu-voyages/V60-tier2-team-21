@@ -119,7 +119,7 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
             <SelectTrigger id="status" className="w-45">
               <SelectValue placeholder="Select Status" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent position="popper">
               <SelectGroup>
                 {Object.values(ApplicationStatus).map((status) => {
                   return (

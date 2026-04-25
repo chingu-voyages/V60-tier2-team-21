@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar, MapIcon, PenTool, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -60,6 +60,11 @@ const ApplicationsView = () => {
 
   const [editingApplication, setEditingApplication] =
     useState<Application | null>(null);
+
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
+
+  if (!hydrated) return null;
 
   // TO DO: handle empty application state
   if (applicationsList.length === 0) {
