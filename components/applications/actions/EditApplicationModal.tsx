@@ -26,7 +26,7 @@ const EditApplicationModal = ({ application, onClose }: Props) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-xl bg-white flex items-center justify-center relative px-4 py-14 rounded-lg">
+      <div className="w-full max-w-xl bg-background flex items-center justify-center relative px-4 py-14 rounded-lg">
         <Button
           className="absolute right-2 top-2 cursor-pointer"
           aria-label="Close"
