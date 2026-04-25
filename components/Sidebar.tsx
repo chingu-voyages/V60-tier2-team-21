@@ -22,8 +22,8 @@ const navLinks = [
 
 function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
   return (
-    <div className="absolute top-0 left-0 h-screen w-full bg-background z-[100]">
-      <header className="flex justify-between items-center px-4 sm:px-6 h-(--height-navbar)">
+    <div className="absolute top-0 left-0 h-screen w-full bg-background z-100">
+      <header className="flex justify-between items-center px-4 sm:px-6 py-6">
         <Link href="/">
           <Placeholderlogo className="text-foreground" />
         </Link>
