@@ -20,7 +20,9 @@ type statusType =
   | "Rejected"
   | "Offered"
   | "Interviewing";
+
 const applications: Application[] = Object.values(INITIAL_APPLICATIONS);
+const roles = [...new Set(applications.map((application) => application.role))]; //filter_dynamic
 
 const FilterSection = () => {
   const [Status, setStatus] = useState<Record<statusType, boolean>>({
@@ -30,15 +32,19 @@ const FilterSection = () => {
     Offered: true,
     Interviewing: true,
   });
-
-  const statuses = Object.keys(Status) as statusType[];
-  const filteredApplication = applications.filter(
-    (apl) => Status[apl.status] === true,
+  const [Role, setRole] = useState<Record<string, boolean>>(
+    Object.fromEntries(roles.map((role) => [role, true])),
   );
+
+  const statuses = Object.keys(Status) as statusType[]; //filter_stable
+  const filteredApplication = applications
+    .filter((apl) => Status[apl.status] === true)
+    .filter((apl) => Role[apl.role] === true);
 
   return (
     <div className="flex flex-col gap-5">
       <div className="w-full flex justify-between">
+        {/* filter based on Status */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="flex justify-between">
@@ -57,6 +63,30 @@ const FilterSection = () => {
                   }
                 >
                   {status}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        {/* filter based on Role */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex justify-between">
+              Role
+              <ChevronDown />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-48">
+            <DropdownMenuGroup>
+              {roles.map((role) => (
+                <DropdownMenuCheckboxItem
+                  key={role}
+                  checked={Role[role]}
+                  onCheckedChange={(checked) =>
+                    setRole({ ...Role, [role]: checked === true })
+                  }
+                >
+                  {role}
                 </DropdownMenuCheckboxItem>
               ))}
             </DropdownMenuGroup>
