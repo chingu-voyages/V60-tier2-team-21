@@ -9,7 +9,7 @@ export default function AppLayout({
   return (
     <div className="sm:grid grid-cols-[256px_1fr] min-h-screen">
       <Sidebar />
-      <main className="mx-auto w-full max-w-2xl px-3 py-4">{children}</main>
+      <main className="mx-auto w-full max-w-6xl">{children}</main>
     </div>
   );
 }
