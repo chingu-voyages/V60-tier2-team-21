@@ -47,7 +47,7 @@ export default function Navbar() {
   const [hamburger, setHamburger] = useState(false);
 
   function handleHamburger() {
-    setHamburger((prev) => !prev);
+    setHamburger(false);
   }
 
   return (
@@ -67,24 +67,19 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div className="h-6 w-px bg-gray-950/10 dark:bg-white/10 sm:block hidden" />
+        <div className="h-6 w-px bg-muted sm:block hidden" />
 
         <ToggleTheme />
         <Button
           variant="outline"
-          onClick={handleHamburger}
+          onClick={() => setHamburger(true)}
           className="sm:hidden"
         >
           <Menu />
         </Button>
       </div>
 
-      {hamburger && (
-        <HamburgerOpen
-          handleHamburger={handleHamburger}
-          setHamburger={setHamburger}
-        />
-      )}
+      {hamburger && <HamburgerOpen handleHamburger={handleHamburger} />}
     </div>
   );
 }
