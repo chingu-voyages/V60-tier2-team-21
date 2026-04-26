@@ -55,8 +55,11 @@ const getStatusVariant = (status: ApplicationStatus) => {
 };
 const ApplicationsView = () => {
   const [openNote, setOpenNote] = useState<null | string>(null);
+
   const { applications, resetApplications } = useApplicationsStore();
-  const applicationsList = Object.values(applications);
+  const applicationsList = Object.values(applications).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
 
   const [editingApplication, setEditingApplication] =
     useState<Application | null>(null);

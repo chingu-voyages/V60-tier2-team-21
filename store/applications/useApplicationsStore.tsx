@@ -4,8 +4,10 @@ import { immer } from "zustand/middleware/immer";
 import { INITIAL_APPLICATIONS } from "./data";
 import type { Application, ApplicationsState } from "./types";
 
-const addApplication = (state: ApplicationsState, application: Application) =>
-  (state.applications[application.id] = application);
+const addApplication = (state: ApplicationsState, application: Application) => {
+  state.applications[application.id] = application;
+  return state;
+};
 
 const removeApplication = (state: ApplicationsState, id: string) => {
   delete state.applications[id];

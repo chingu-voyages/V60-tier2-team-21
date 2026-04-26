@@ -54,6 +54,8 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
     });
   }
 
+  const [submitted, setSubmitted] = useState(false);
+
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
 
@@ -61,10 +63,23 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
     if (onSubmit) return onSubmit(applicationFormData);
 
     addApplication(applicationFormData);
+
+    // reset the form
+    setApplicationFormData({
+      ...INITIAL_APPLICATION,
+      id: uuid4(),
+      status: ApplicationStatus.Applied,
+    });
+
+    setSubmitted(true);
+
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 1500);
   }
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md md:max-w-lg">
       <CardContent>
         <form className="flex flex-col gap-3" onSubmit={handleFormSubmit}>
           <Label htmlFor="company-name">Company Name</Label>
@@ -140,6 +155,9 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
             onChange={handleChange}
             value={applicationFormData.notes}
           />
+          {submitted && (
+            <p className="text-center text-base">🎉 Submitted successfully</p>
+          )}
           <Button type="submit">Submit</Button>
         </form>
       </CardContent>
