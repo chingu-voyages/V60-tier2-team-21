@@ -18,13 +18,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { INITIAL_APPLICATIONS } from "@/store/applications/data";
-import type { ApplicationStatus } from "@/store/applications/types";
+import type {
+  Application,
+  ApplicationStatus,
+} from "@/store/applications/types";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
 const tableColumns = ["Company", "Role", "Date", "Location", "Status", "Notes"];
-const applications = Object.values(INITIAL_APPLICATIONS);
 
 const getStatusVariant = (status: ApplicationStatus) => {
   switch (status) {
@@ -41,7 +42,11 @@ const getStatusVariant = (status: ApplicationStatus) => {
       return "default";
   }
 };
-const ApplicationsView = () => {
+const ApplicationsView = ({
+  applications,
+}: {
+  applications: Application[];
+}) => {
   const [openNote, setOpenNote] = useState<null | string>(null);
 
   return (
