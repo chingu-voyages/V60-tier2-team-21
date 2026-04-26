@@ -23,6 +23,9 @@ type statusType =
 
 const applications: Application[] = Object.values(INITIAL_APPLICATIONS);
 const roles = [...new Set(applications.map((application) => application.role))]; //filter_dynamic
+const locations = [
+  ...new Set(applications.map((application) => application.location)),
+]; //filter_dynamic
 
 const FilterSection = () => {
   const [Status, setStatus] = useState<Record<statusType, boolean>>({
@@ -35,11 +38,15 @@ const FilterSection = () => {
   const [Role, setRole] = useState<Record<string, boolean>>(
     Object.fromEntries(roles.map((role) => [role, true])),
   );
+  const [Loc, setLoc] = useState<Record<string, boolean>>(
+    Object.fromEntries(locations.map((loc) => [loc, true])),
+  );
 
   const statuses = Object.keys(Status) as statusType[]; //filter_stable
   const filteredApplication = applications
     .filter((apl) => Status[apl.status] === true)
-    .filter((apl) => Role[apl.role] === true);
+    .filter((apl) => Role[apl.role] === true)
+    .filter((apl) => Loc[apl.location] === true);
 
   return (
     <div className="flex flex-col gap-5">
@@ -87,6 +94,30 @@ const FilterSection = () => {
                   }
                 >
                   {role}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        {/* filter based on Location */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex justify-between">
+              Location
+              <ChevronDown />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-48">
+            <DropdownMenuGroup>
+              {locations.map((loc) => (
+                <DropdownMenuCheckboxItem
+                  key={loc}
+                  checked={Loc[loc]}
+                  onCheckedChange={(checked) =>
+                    setLoc({ ...Loc, [loc]: checked === true })
+                  }
+                >
+                  {loc}
                 </DropdownMenuCheckboxItem>
               ))}
             </DropdownMenuGroup>
