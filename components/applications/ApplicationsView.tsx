@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar, MapIcon, PenTool, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -18,13 +18,25 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { INITIAL_APPLICATIONS } from "@/store/applications/data";
-import type { ApplicationStatus } from "@/store/applications/types";
+import type {
+  Application,
+  ApplicationStatus,
+} from "@/store/applications/types";
+import useApplicationsStore from "@/store/applications/useApplicationsStore";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import EditApplicationModal from "./actions/EditApplicationModal";
+import SettingsDropDown from "./actions/SettingsDropdown";
 
-const tableColumns = ["Company", "Role", "Date", "Location", "Status", "Notes"];
-const applications = Object.values(INITIAL_APPLICATIONS);
+const tableColumns = [
+  "Company",
+  "Role",
+  "Date",
+  "Location",
+  "Status",
+  "Notes",
+  "Settings",
+];
 
 const getStatusVariant = (status: ApplicationStatus) => {
   switch (status) {
@@ -43,6 +55,29 @@ const getStatusVariant = (status: ApplicationStatus) => {
 };
 const ApplicationsView = () => {
   const [openNote, setOpenNote] = useState<null | string>(null);
+
+  const { applications, resetApplications } = useApplicationsStore();
+  const applicationsList = Object.values(applications).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
+
+  const [editingApplication, setEditingApplication] =
+    useState<Application | null>(null);
+
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
+
+  if (!hydrated) return null;
+
+  // TO DO: handle empty application state
+  if (applicationsList.length === 0) {
+    return (
+      <div className="m-auto pt-30 max-w-fit">
+        <p>Empty Applications</p>
+        <Button onClick={resetApplications}>Reset Applications</Button>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -70,7 +105,7 @@ const ApplicationsView = () => {
           </TableHeader>
 
           <TableBody>
-            {applications.map((application) => (
+            {applicationsList.map((application) => (
               <TableRow
                 key={application.id}
                 className="text-muted-foreground transition-colors hover:bg-muted/70 cursor-default"
@@ -130,6 +165,15 @@ const ApplicationsView = () => {
                     ...
                   </Button>
                 </TableCell>
+
+                <TableCell>
+                  <SettingsDropDown
+                    applicationId={application.id}
+                    onEdit={() => {
+                      setEditingApplication(application);
+                    }}
+                  />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -138,7 +182,7 @@ const ApplicationsView = () => {
       {/* smaller screens=> cards */}
       <div className="md:hidden">
         <ul className="p-8">
-          {applications.map((application) => (
+          {applicationsList.map((application) => (
             <li key={application.id}>
               <Card className="mb-2.5">
                 <CardHeader className="flex justify-between">
@@ -150,10 +194,17 @@ const ApplicationsView = () => {
                       {application.role}
                     </p>
                   </CardTitle>
-                  <div className="w-auto">
+                  <div className="w-auto flex gap-2">
                     <Badge variant={getStatusVariant(application.status)}>
                       {application.status}
                     </Badge>
+
+                    <SettingsDropDown
+                      applicationId={application.id}
+                      onEdit={() => {
+                        setEditingApplication(application);
+                      }}
+                    />
                   </div>
                 </CardHeader>
 
@@ -185,6 +236,12 @@ const ApplicationsView = () => {
           ))}
         </ul>
       </div>
+
+      <EditApplicationModal
+        application={editingApplication}
+        onClose={() => setEditingApplication(null)}
+        key={editingApplication?.id}
+      />
     </>
   );
 };
