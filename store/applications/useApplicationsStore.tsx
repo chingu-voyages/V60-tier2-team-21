@@ -4,19 +4,27 @@ import { immer } from "zustand/middleware/immer";
 import { INITIAL_APPLICATIONS } from "./data";
 import type { Application, ApplicationsState } from "./types";
 
-const addApplication = (state: ApplicationsState, application: Application) =>
-  (state.applications[application.id] = application);
+const addApplication = (state: ApplicationsState, application: Application) => {
+  state.applications[application.id] = application;
+  return state;
+};
 
-const removeApplication = (state: ApplicationsState, id: string) =>
+const removeApplication = (state: ApplicationsState, id: string) => {
   delete state.applications[id];
+  return state;
+};
 
 const updateApplication = (
   state: ApplicationsState,
   id: string,
-  payload: Record<string, string>,
+  payload: Partial<Application>,
 ) => {
   if (!state.applications[id]) return;
   state.applications[id] = { ...state.applications[id], ...payload };
+};
+
+const resetApplications = (state: ApplicationsState) => {
+  state.applications = INITIAL_APPLICATIONS;
 };
 
 const getInitialData = () => {
@@ -39,10 +47,11 @@ const useApplicationsStore = create<ApplicationsState>()(
       applications: getInitialData(),
       addApplication: (application: Application) =>
         set((state) => addApplication(state, application)),
-      updateApplication: (id: string, payload: Record<string, string>) =>
+      updateApplication: (id: string, payload: Partial<Application>) =>
         set((state) => updateApplication(state, id, payload)),
       removeApplication: (id: string) =>
         set((state) => removeApplication(state, id)),
+      resetApplications: () => set(resetApplications),
     })),
     {
       name: "store",
