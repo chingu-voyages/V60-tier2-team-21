@@ -20,7 +20,8 @@ import {
 } from "@/components/ui/popover";
 import { INITIAL_APPLICATIONS } from "@/store/applications/data";
 import type { Application } from "@/store/applications/types";
-import ApplicationsView from "./applications/ApplicationsView";
+
+// import ApplicationsView from "./applications/ApplicationsView";
 
 type statusType =
   | "Applied"
@@ -189,9 +190,10 @@ const FilterSection = () => {
             </Popover>
           </Field>
         </div>
+        {/* clear filter */}
         <Button onClick={() => clearFilter()}>Clear Filter</Button>
       </div>
-      <ApplicationsView applicationsList={filteredApplication} />
+      {/* <ApplicationsView applicationsList={filteredApplication} /> */}
     </div>
   );
 };
