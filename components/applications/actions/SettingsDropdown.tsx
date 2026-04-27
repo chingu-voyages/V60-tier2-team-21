@@ -32,7 +32,7 @@ const SettingsDropDown = ({ applicationId, onEdit }: Props) => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
-    <>
+    <div className="md:flex justify-center md:pr-2">
       <DropdownMenu>
         <DropdownMenuTrigger
           asChild
@@ -41,7 +41,10 @@ const SettingsDropDown = ({ applicationId, onEdit }: Props) => {
           className="cursor-pointer"
         >
           <span>
-            <Ellipsis size={18} className="hidden md:block" />
+            <Ellipsis
+              size={16}
+              className="hidden md:block hover:text-foreground"
+            />
             <EllipsisVertical size={18} className="md:hidden" />
           </span>
         </DropdownMenuTrigger>
@@ -83,7 +86,7 @@ const SettingsDropDown = ({ applicationId, onEdit }: Props) => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </div>
   );
 };
 

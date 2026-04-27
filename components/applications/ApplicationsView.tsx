@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, MapIcon, PenTool, X } from "lucide-react";
+import { Calendar, Ellipsis, MapIcon, PenTool, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   Card,
@@ -97,7 +97,7 @@ const ApplicationsView = ({
                     "py-4 text-sm font-medium text-muted-foreground",
                     col === "Company"
                       ? "pl-5"
-                      : col === "Notes"
+                      : col === "Settings"
                         ? "pr-5"
                         : "px-2.5",
                   )}
@@ -139,7 +139,7 @@ const ApplicationsView = ({
                   </Badge>
                 </TableCell>
 
-                <TableCell className="relative flex justify-center items-center pr-5 py-4 text-lg font-medium">
+                <TableCell className="relative pr-2.5 py-4">
                   {openNote === application.id && (
                     <div>
                       <button
@@ -153,7 +153,7 @@ const ApplicationsView = ({
                           variant="ghost"
                           type="button"
                           onClick={() => setOpenNote(null)}
-                          className="absolute top-3 right-3"
+                          className="absolute top-3 right-3 hover:bg-transparent hover:text-background cursor-pointer"
                         >
                           <X className="size-4 ml-3 mb-3 cursor-pointer" />
                         </Button>
@@ -166,11 +166,11 @@ const ApplicationsView = ({
                     onClick={() => setOpenNote(application.id)}
                     className="cursor-pointer"
                   >
-                    ...
+                    <Ellipsis />
                   </Button>
                 </TableCell>
 
-                <TableCell>
+                <TableCell className="pr-5 py-4">
                   <SettingsDropDown
                     applicationId={application.id}
                     onEdit={() => {
