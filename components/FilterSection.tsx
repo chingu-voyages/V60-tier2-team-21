@@ -68,106 +68,126 @@ const FilterSection = () => {
         : true,
     );
 
+  const clearFilter = () => {
+    setStatus({
+      Applied: true,
+      Pending: true,
+      Rejected: true,
+      Offered: true,
+      Interviewing: true,
+    });
+    setRole(Object.fromEntries(roles.map((role) => [role, true])));
+    setLoc(Object.fromEntries(locations.map((loc) => [loc, true])));
+    setDate({
+      from: new Date(sortedApplications[sortedApplications.length - 1].date),
+      to: new Date(sortedApplications[0].date),
+    });
+  };
+
   return (
     <div className="flex flex-col gap-5">
-      <div className="w-full flex gap-10">
-        {/* filter based on Status */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex justify-between">
-              Status
-              <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-48">
-            <DropdownMenuGroup>
-              {statuses.map((status) => (
-                <DropdownMenuCheckboxItem
-                  key={status}
-                  checked={Status[status]}
-                  onCheckedChange={(checked) =>
-                    setStatus({ ...Status, [status]: checked === true })
-                  }
-                >
-                  {status}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        {/* filter based on Role */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex justify-between">
-              Role
-              <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-48">
-            <DropdownMenuGroup>
-              {roles.map((role) => (
-                <DropdownMenuCheckboxItem
-                  key={role}
-                  checked={Role[role]}
-                  onCheckedChange={(checked) =>
-                    setRole({ ...Role, [role]: checked === true })
-                  }
-                >
-                  {role}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        {/* filter based on Location */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex justify-between">
-              Location
-              <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-48">
-            <DropdownMenuGroup>
-              {locations.map((loc) => (
-                <DropdownMenuCheckboxItem
-                  key={loc}
-                  checked={Loc[loc]}
-                  onCheckedChange={(checked) =>
-                    setLoc({ ...Loc, [loc]: checked === true })
-                  }
-                >
-                  {loc}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        {/* filter based on Date */}
-        <Field className="w-auto">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                id="date-picker-range"
-                className="justify-start px-2.5 font-normal"
-              >
-                <CalendarIcon />
-                Date
+      <div className="w-full flex justify-between">
+        <div className="w-full flex gap-10">
+          {/* filter based on Status */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="flex justify-between">
+                Status
+                <ChevronDown />
               </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="range"
-                defaultMonth={date?.from}
-                selected={date}
-                onSelect={(selected) => selected && setDate(selected)}
-                numberOfMonths={2}
-                required={false}
-              />
-            </PopoverContent>
-          </Popover>
-        </Field>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48">
+              <DropdownMenuGroup>
+                {statuses.map((status) => (
+                  <DropdownMenuCheckboxItem
+                    key={status}
+                    checked={Status[status]}
+                    onCheckedChange={(checked) =>
+                      setStatus({ ...Status, [status]: checked === true })
+                    }
+                  >
+                    {status}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {/* filter based on Role */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="flex justify-between">
+                Role
+                <ChevronDown />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48">
+              <DropdownMenuGroup>
+                {roles.map((role) => (
+                  <DropdownMenuCheckboxItem
+                    key={role}
+                    checked={Role[role]}
+                    onCheckedChange={(checked) =>
+                      setRole({ ...Role, [role]: checked === true })
+                    }
+                  >
+                    {role}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {/* filter based on Location */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="flex justify-between">
+                Location
+                <ChevronDown />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48">
+              <DropdownMenuGroup>
+                {locations.map((loc) => (
+                  <DropdownMenuCheckboxItem
+                    key={loc}
+                    checked={Loc[loc]}
+                    onCheckedChange={(checked) =>
+                      setLoc({ ...Loc, [loc]: checked === true })
+                    }
+                  >
+                    {loc}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {/* filter based on Date */}
+          <Field className="w-auto">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  id="date-picker-range"
+                  className="justify-start px-2.5 font-normal"
+                >
+                  <CalendarIcon />
+                  Date
+                  <ChevronDown />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="range"
+                  defaultMonth={date?.from}
+                  selected={date}
+                  onSelect={(selected) => selected && setDate(selected)}
+                  numberOfMonths={2}
+                  required={false}
+                />
+              </PopoverContent>
+            </Popover>
+          </Field>
+        </div>
+        <Button onClick={() => clearFilter()}>Clear Filter</Button>
       </div>
       <ApplicationsView applicationsList={filteredApplication} />
     </div>
