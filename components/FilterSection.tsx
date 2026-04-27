@@ -22,6 +22,9 @@ type statusType =
   | "Interviewing";
 
 const applications: Application[] = Object.values(INITIAL_APPLICATIONS);
+const sortedApplications = Object.values(applications).sort((a, b) =>
+  b.date.localeCompare(a.date),
+);
 const roles = [...new Set(applications.map((application) => application.role))]; //filter_dynamic
 const locations = [
   ...new Set(applications.map((application) => application.location)),
@@ -43,7 +46,7 @@ const FilterSection = () => {
   );
 
   const statuses = Object.keys(Status) as statusType[]; //filter_stable
-  const filteredApplication = applications
+  const filteredApplication = sortedApplications
     .filter((apl) => Status[apl.status] === true)
     .filter((apl) => Role[apl.role] === true)
     .filter((apl) => Loc[apl.location] === true);
@@ -124,7 +127,7 @@ const FilterSection = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <ApplicationsView applications={filteredApplication} />
+      <ApplicationsView applicationsList={filteredApplication} />
     </div>
   );
 };
