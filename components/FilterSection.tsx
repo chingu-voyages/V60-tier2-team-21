@@ -1,8 +1,10 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { CalendarIcon, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import type { DateRange } from "react-day-picker";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -10,6 +12,12 @@ import {
   DropdownMenuGroup,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Field } from "@/components/ui/field";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { INITIAL_APPLICATIONS } from "@/store/applications/data";
 import type { Application } from "@/store/applications/types";
 import ApplicationsView from "./applications/ApplicationsView";
@@ -44,16 +52,25 @@ const FilterSection = () => {
   const [Loc, setLoc] = useState<Record<string, boolean>>(
     Object.fromEntries(locations.map((loc) => [loc, true])),
   );
+  const [date, setDate] = useState<DateRange>({
+    from: new Date(sortedApplications[sortedApplications.length - 1].date),
+    to: new Date(sortedApplications[0].date),
+  });
 
-  const statuses = Object.keys(Status) as statusType[]; //filter_stable
+  const statuses = Object.keys(Status) as statusType[]; //filter_static
   const filteredApplication = sortedApplications
     .filter((apl) => Status[apl.status] === true)
     .filter((apl) => Role[apl.role] === true)
-    .filter((apl) => Loc[apl.location] === true);
+    .filter((apl) => Loc[apl.location] === true)
+    .filter((apl) =>
+      date.from && date.to
+        ? new Date(apl.date) >= date.from && new Date(apl.date) <= date.to
+        : true,
+    );
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="w-full flex justify-between">
+      <div className="w-full flex gap-10">
         {/* filter based on Status */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -126,6 +143,31 @@ const FilterSection = () => {
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
+        {/* filter based on Date */}
+        <Field className="w-auto">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                id="date-picker-range"
+                className="justify-start px-2.5 font-normal"
+              >
+                <CalendarIcon />
+                Date
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="range"
+                defaultMonth={date?.from}
+                selected={date}
+                onSelect={(selected) => selected && setDate(selected)}
+                numberOfMonths={2}
+                required={false}
+              />
+            </PopoverContent>
+          </Popover>
+        </Field>
       </div>
       <ApplicationsView applicationsList={filteredApplication} />
     </div>

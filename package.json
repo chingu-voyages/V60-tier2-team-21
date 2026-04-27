@@ -17,6 +17,7 @@
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "immer": "^11.1.4",
     "lucide-react": "^1.7.0",
     "motion": "^12.38.0",
@@ -24,6 +25,7 @@
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "19.2.4",
+    "react-day-picker": "^9.14.0",
     "react-dom": "19.2.4",
     "recharts": "3.8.0",
     "shadcn": "^4.2.0",
