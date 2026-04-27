@@ -86,8 +86,8 @@ const FilterSection = () => {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="w-full flex justify-between">
-        <div className="w-full flex gap-10">
+      <div className="w-full flex flex-col md:flex-row md:justify-between gap-5">
+        <div className="w-full grid grid-cols-2 md:flex md:gap-5 gap-2.5">
           {/* filter based on Status */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -161,20 +161,22 @@ const FilterSection = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           {/* filter based on Date */}
-          <Field className="w-auto">
+          <Field>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
                   id="date-picker-range"
-                  className="justify-start px-2.5 font-normal"
+                  className="md:max-w-25 flex justify-between px-2.5 font-medium"
                 >
-                  <CalendarIcon />
-                  Date
+                  <div className="flex gap-2">
+                    <CalendarIcon />
+                    Date
+                  </div>
                   <ChevronDown />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent className="max-w-auto p-0" align="start">
                 <Calendar
                   mode="range"
                   defaultMonth={date?.from}
