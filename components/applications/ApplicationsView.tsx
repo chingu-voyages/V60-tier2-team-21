@@ -147,15 +147,15 @@ const ApplicationsView = ({
                         className="fixed inset-0"
                         onClick={() => setOpenNote(null)}
                       ></button>
-                      <Card className="absolute bg-foreground/85 w-60 h-30 top-0 right-0 z-10 text-accent/90 p-3 text-wrap">
+                      <Card className="absolute bg-foreground/85 w-60 h-30 top-0 right-0 z-100 text-accent/90 p-3 text-wrap">
                         <p className="p-3">{application.notes}</p>
                         <Button
                           variant="ghost"
                           type="button"
                           onClick={() => setOpenNote(null)}
-                          className="absolute top-3 right-3 hover:bg-transparent hover:text-background cursor-pointer"
+                          className="absolute top-0.5 right-0 hover:bg-transparent hover:text-background cursor-pointer"
                         >
-                          <X className="size-4 ml-3 mb-3 cursor-pointer" />
+                          <X className="size-4 cursor-pointer" />
                         </Button>
                       </Card>
                     </div>
