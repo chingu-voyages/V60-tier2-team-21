@@ -2,6 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Placeholderlogo from "@/components/PlaceholderLogo";
 import { Button } from "@/components/ui/button";
@@ -45,19 +46,19 @@ function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
 
 export default function Sidebar() {
   const [hamburger, setHamburger] = useState(false);
+  const pathname = usePathname();
 
   function handleHamburger() {
-    setHamburger((prev) => !prev);
-  }
-
-  function handleCloseHamburger() {
     setHamburger(false);
   }
 
   const sideBarElements = sideLinks.map((sideLink) => {
     return (
       <li key={sideLink.href}>
-        <Link className="flex gap-3" href={sideLink.href}>
+        <Link
+          className={`flex gap-3 ${pathname === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
+          href={sideLink.href}
+        >
           <sideLink.icon />
           {sideLink.name}
         </Link>
@@ -68,11 +69,15 @@ export default function Sidebar() {
   return (
     <div className="flex justify-between sm:flex-col sm:justify-start sm:h-screen border-r px-4 py-6">
       <Placeholderlogo className="mb-6" />
-      <Button variant="outline" onClick={handleHamburger} className="sm:hidden">
+      <Button
+        variant="outline"
+        onClick={() => setHamburger(false)}
+        className="sm:hidden"
+      >
         <Menu />
       </Button>
       <ul className="hidden sm:flex flex-col gap-4">{sideBarElements}</ul>
-      {hamburger && <HamburgerOpen handleHamburger={handleCloseHamburger} />}
+      {hamburger && <HamburgerOpen handleHamburger={handleHamburger} />}
     </div>
   );
 }

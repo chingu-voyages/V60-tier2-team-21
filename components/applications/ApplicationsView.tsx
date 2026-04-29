@@ -38,21 +38,6 @@ const tableColumns = [
   "Settings",
 ];
 
-const getStatusVariant = (status: ApplicationStatus) => {
-  switch (status) {
-    case "Applied":
-    case "Pending":
-      return "green";
-    case "Rejected":
-      return "red";
-    case "Offered":
-      return "yellow";
-    case "Interviewing":
-      return "purple";
-    default:
-      return "default";
-  }
-};
 const ApplicationsView = () => {
   const [openNote, setOpenNote] = useState<null | string>(null);
 
@@ -82,7 +67,7 @@ const ApplicationsView = () => {
   return (
     <>
       {/* larger screens=> table */}
-      <div className="rounded-xl md:border border-border bg-card overflow-hidden">
+      <div className="rounded-xl md:border border-border bg-card">
         <Table className="hidden md:block w-full">
           <TableHeader>
             <TableRow className="bg-muted/70 hover:bg-muted/70 cursor-default">
@@ -128,7 +113,7 @@ const ApplicationsView = () => {
 
                 <TableCell className="px-2.5 py-4">
                   <Badge
-                    variant={getStatusVariant(application.status)}
+                    variant={application.status.toLowerCase()}
                     className="w-full"
                   >
                     {application.status}
@@ -195,7 +180,7 @@ const ApplicationsView = () => {
                     </p>
                   </CardTitle>
                   <div className="w-auto flex gap-2">
-                    <Badge variant={getStatusVariant(application.status)}>
+                    <Badge variant={application.status.toLowerCase()}>
                       {application.status}
                     </Badge>
 
