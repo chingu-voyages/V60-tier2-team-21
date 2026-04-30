@@ -83,7 +83,7 @@ export default function DashboardChart() {
   // 	})
 
   return (
-    <Card className="pt-0 mb-14">
+    <Card className="pt-0">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
           <CardTitle>Application Journey</CardTitle>

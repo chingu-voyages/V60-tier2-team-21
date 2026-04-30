@@ -1,7 +1,9 @@
 "use client";
 
-import { Calendar, MapIcon, PenTool, X } from "lucide-react";
+import { Calendar, MapIcon, PenTool, StickyNote, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,6 +11,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -23,8 +33,6 @@ import type {
   ApplicationStatus,
 } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
-import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
 import EditApplicationModal from "./actions/EditApplicationModal";
 import SettingsDropDown from "./actions/SettingsDropdown";
 
@@ -55,20 +63,20 @@ const ApplicationsView = () => {
   if (!hydrated) return null;
 
   // TO DO: handle empty application state
-  if (applicationsList.length === 0) {
-    return (
-      <div className="m-auto pt-30 max-w-fit">
-        <p>Empty Applications</p>
-        <Button onClick={resetApplications}>Reset Applications</Button>
-      </div>
-    );
-  }
+  // if (applicationsList.length === 0) {
+  //   return (
+  //     <div className="m-auto pt-30 max-w-fit">
+  //       <p>Empty Applications</p>
+  //       <Button onClick={resetApplications}>Reset Applications</Button>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
       {/* larger screens=> table */}
-      <div className="rounded-xl md:border border-border bg-card">
-        <Table className="hidden md:block w-full">
+      <div className="rounded-xl md:border md:border-border bg-card relative">
+        <Table className="hidden md:table w-full">
           <TableHeader>
             <TableRow className="bg-muted/70 hover:bg-muted/70 cursor-default">
               {tableColumns.map((col) => (
@@ -112,43 +120,32 @@ const ApplicationsView = () => {
                 </TableCell>
 
                 <TableCell className="px-2.5 py-4">
-                  <Badge
-                    variant={application.status.toLowerCase()}
-                    className="w-full"
-                  >
+                  <Badge variant={application.status.toLowerCase()}>
                     {application.status}
                   </Badge>
                 </TableCell>
 
-                <TableCell className="relative flex justify-center items-center pr-5 py-4 text-lg font-medium">
-                  {openNote === application.id && (
-                    <div>
-                      <button
-                        type="button"
-                        className="fixed inset-0"
-                        onClick={() => setOpenNote(null)}
-                      ></button>
-                      <Card className="absolute bg-foreground/85 w-60 h-30 top-0 right-0 z-10 text-accent/90 p-3 text-wrap">
-                        <p className="p-3">{application.notes}</p>
-                        <Button
-                          variant="ghost"
-                          type="button"
-                          onClick={() => setOpenNote(null)}
-                          className="absolute top-3 right-3"
-                        >
-                          <X className="size-4 ml-3 mb-3 cursor-pointer" />
-                        </Button>
-                      </Card>
-                    </div>
-                  )}
-                  <Button
-                    variant="ghost"
-                    type="button"
-                    onClick={() => setOpenNote(application.id)}
-                    className="cursor-pointer"
-                  >
-                    ...
-                  </Button>
+                <TableCell>
+                  <Dialog>
+                    <DialogTrigger
+                      asChild
+                      aria-label="See the note"
+                      title="See the note"
+                    >
+                      <Button variant="ghost" className="cursor-pointer">
+                        <StickyNote />
+                      </Button>
+                    </DialogTrigger>
+
+                    <DialogContent showCloseButton={false}>
+                      <DialogHeader>
+                        <DialogTitle>Notes</DialogTitle>
+                        <DialogDescription>
+                          {application.notes}
+                        </DialogDescription>
+                      </DialogHeader>
+                    </DialogContent>
+                  </Dialog>
                 </TableCell>
 
                 <TableCell>
