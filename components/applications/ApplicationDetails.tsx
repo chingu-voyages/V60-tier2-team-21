@@ -14,6 +14,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
+type StatusVariant =
+  | "applied"
+  | "offered"
+  | "interviewing"
+  | "pending"
+  | "rejected";
+
 const ApplicationDetails = ({ id }: { id: string }) => {
   const application = useApplicationsStore((state) => state.applications[id]);
 
@@ -32,6 +39,8 @@ const ApplicationDetails = ({ id }: { id: string }) => {
     );
   }
 
+  const statusVariant = application.status.toLowerCase() as StatusVariant;
+
   return (
     <div>
       <header className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
@@ -40,7 +49,7 @@ const ApplicationDetails = ({ id }: { id: string }) => {
             <h1 className="text-2xl font-semibold">
               {application.companyName}
             </h1>
-            <Badge variant={application.status.toLowerCase()}>
+            <Badge variant={statusVariant}>
               <p>{application.status}</p>
             </Badge>
           </div>
