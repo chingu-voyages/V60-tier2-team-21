@@ -219,11 +219,13 @@ const ApplicationsView = () => {
         </ul>
       </div>
 
-      <EditApplicationModal
-        application={editingApplication}
-        onClose={() => setEditingApplication(null)}
-        key={editingApplication?.id}
-      />
+      {editingApplication && (
+        <EditApplicationModal
+          application={editingApplication}
+          onClose={() => setEditingApplication(null)}
+          key={editingApplication?.id}
+        />
+      )}
     </>
   );
 };

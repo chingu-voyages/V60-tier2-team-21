@@ -47,6 +47,7 @@ function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
 export default function Sidebar() {
   const [hamburger, setHamburger] = useState(false);
   const pathname = usePathname();
+  console.log("Pathname:", pathname);
 
   function handleHamburger() {
     setHamburger(false);
@@ -54,12 +55,15 @@ export default function Sidebar() {
 
   const sideBarElements = sideLinks.map((sideLink) => {
     return (
-      <li key={sideLink.href}>
+      <li
+        className="group hover:bg-foreground/5 p-2 rounded-md"
+        key={sideLink.href}
+      >
         <Link
-          className={`flex gap-3 ${pathname === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
+          className={`text-sm font-medium flex items-center gap-3 group-hover:text-foreground ${pathname === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
           href={sideLink.href}
         >
-          <sideLink.icon />
+          <sideLink.icon className="size-5" />
           {sideLink.name}
         </Link>
       </li>
@@ -67,16 +71,16 @@ export default function Sidebar() {
   });
 
   return (
-    <div className="flex justify-between sm:flex-col sm:justify-start sm:h-screen border-r px-4 py-6">
+    <div className="flex justify-between lg:flex-col lg:justify-start lg:h-full border-r px-4 py-6">
       <Placeholderlogo className="mb-6" />
       <Button
         variant="outline"
         onClick={() => setHamburger(false)}
-        className="sm:hidden"
+        className="lg:hidden"
       >
         <Menu />
       </Button>
-      <ul className="hidden sm:flex flex-col gap-4">{sideBarElements}</ul>
+      <ul className="hidden lg:flex flex-col gap-0.5">{sideBarElements}</ul>
       {hamburger && <HamburgerOpen handleHamburger={handleHamburger} />}
     </div>
   );

@@ -90,9 +90,9 @@ export default function Dashboard() {
     <div className="flex flex-col gap-12">
       <DashboardHeaderSimple />
       <DashboardCardOverview />
-      {/* <ApplicationsView /> */}
       <DashboardChart />
       <DashboardCardProfile />
+      {/* <ApplicationsView /> */}
     </div>
   );
 }
