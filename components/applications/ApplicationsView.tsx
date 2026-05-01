@@ -41,14 +41,15 @@ const tableColumns = [
 const getStatusVariant = (status: ApplicationStatus) => {
   switch (status) {
     case "Applied":
+      return "applied";
     case "Pending":
-      return "green";
+      return "pending";
     case "Rejected":
-      return "red";
+      return "rejected";
     case "Offered":
-      return "yellow";
+      return "offered";
     case "Interviewing":
-      return "purple";
+      return "interviewing";
     default:
       return "default";
   }
