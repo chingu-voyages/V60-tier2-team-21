@@ -47,7 +47,9 @@ function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
 export default function Sidebar() {
   const [hamburger, setHamburger] = useState(false);
   const pathname = usePathname();
-  console.log("Pathname:", pathname);
+  // Regex for getting the active path consume /apps/app produce /apps
+  const onlyFirstPath =
+    pathname.match(/(\/(?:[A-Za-z0-9_]+)?)/g)[0] ?? "/dashboard";
 
   function handleHamburger() {
     setHamburger(false);
@@ -60,7 +62,7 @@ export default function Sidebar() {
         key={sideLink.href}
       >
         <Link
-          className={`text-sm font-medium flex items-center gap-3 group-hover:text-foreground ${pathname === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
+          className={`text-sm font-medium flex items-center gap-3 group-hover:text-foreground ${onlyFirstPath === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
           href={sideLink.href}
         >
           <sideLink.icon className="size-5" />

@@ -9,13 +9,31 @@ import {
   Trash2,
 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import EditApplicationModal from "@/components/applications/actions/EditApplicationModal";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Application } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
 const ApplicationDetails = ({ id }: { id: string }) => {
   const application = useApplicationsStore((state) => state.applications[id]);
+  console.log("Application:", application);
+  const [editingApplication, setEditingApplication] =
+    useState<Application | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const { removeApplication } = useApplicationsStore();
 
   if (!application) {
     // TODO: improve this
@@ -51,11 +69,21 @@ const ApplicationDetails = ({ id }: { id: string }) => {
         </div>
 
         <div className="flex gap-2 sm:gap-4 pb-12 sm:pb-0">
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            onClick={() => {
+              setEditingApplication(application);
+            }}
+          >
             <Pencil className="size-4" />
             Edit
           </Button>
-          <Button variant="destructive">
+          <Button
+            variant="destructive"
+            onClick={() => {
+              setDialogOpen(true);
+            }}
+          >
             <Trash2 className="size-4" />
             Delete
           </Button>
@@ -93,6 +121,39 @@ const ApplicationDetails = ({ id }: { id: string }) => {
           <div className="whitespace-pre-wrap text-sm">{application.notes}</div>
         </CardContent>
       </Card>
+
+      {editingApplication && (
+        <EditApplicationModal
+          application={editingApplication}
+          onClose={() => setEditingApplication(null)}
+          key={editingApplication?.id}
+        />
+      )}
+
+      {dialogOpen && (
+        <AlertDialog open={dialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                application from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setDialogOpen(false)}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => removeApplication(application.id)}
+              >
+                Yes, delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
     </div>
   );
 };
