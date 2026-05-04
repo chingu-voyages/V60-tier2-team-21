@@ -200,7 +200,7 @@ export function BentoApplication() {
                 Software developer
               </p>
             </div>
-            <Badge variant="green">Applied</Badge>
+            <Badge variant="applied">Applied</Badge>
           </CardTitle>
         </CardHeader>
 
@@ -234,7 +234,7 @@ export function BentoApplication() {
                 Software Dev Engineer
               </p>
             </div>
-            <Badge variant="yellow">Offer</Badge>
+            <Badge variant="offered">Offer</Badge>
           </CardTitle>
         </CardHeader>
 
@@ -264,34 +264,34 @@ export function BentoStatus() {
   return (
     <>
       <div className="border rounded-2xl text-left p-4 bg-background -translate-y-2 translate-x-2 flex justify-between gap-4">
-        <Badge variant="green">Applied</Badge>
+        <Badge variant="applied">Applied</Badge>
 
         <div className="w-full bg-muted rounded-xl" />
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-4 translate-x-4 bg-background flex justify-between gap-4">
-        <Badge variant="red">Rejected</Badge>
+        <Badge variant="rejected">Rejected</Badge>
 
         <div className="w-full bg-muted rounded-xl" />
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-6 translate-x-6 bg-background flex justify-between gap-4">
-        <Badge variant="yellow">Offer</Badge>
+        <Badge variant="offered">Offer</Badge>
         <div className="w-full bg-muted rounded-xl" />
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-8 translate-x-8 bg-background flex justify-between gap-4">
-        <Badge variant="blue">Test case</Badge>
+        <Badge variant="offered">Test case</Badge>
         <div className="w-full bg-muted rounded-xl" />
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-10 translate-x-10 bg-background flex justify-between gap-4">
-        <Badge variant="sky">HR Interview</Badge>
+        <Badge variant="interviewing">HR Interview</Badge>
         <div className="w-full bg-muted rounded-xl" />
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-12 translate-x-12 bg-background flex justify-between gap-4">
-        <Badge variant="purple">Managment Interview</Badge>
+        <Badge variant="interviewing">Managment Interview</Badge>
         <div className="w-full bg-muted rounded-xl" />
       </div>
     </>
