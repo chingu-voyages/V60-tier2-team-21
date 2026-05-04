@@ -5,20 +5,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Placeholderlogo from "@/components/PlaceholderLogo";
+import { ToggleTheme } from "@/components/ToggleTheme";
 import { Button } from "@/components/ui/button";
 import { sideLinks } from "@/lib/data";
 
 function HamburgerOpen({ handleHamburger }: { handleHamburger: () => void }) {
   return (
-    <div className="absolute top-0 left-0 h-screen w-full bg-background z-100">
-      <header className="flex justify-between items-center px-4 sm:px-6 py-6">
+    <div className="absolute top-0 left-0 h-screen w-full bg-background z-50">
+      <header className="flex justify-between items-center px-4 py-6">
         <Link href="/">
           <Placeholderlogo className="text-foreground" />
         </Link>
 
-        <Button variant="outline" onClick={handleHamburger}>
-          <X />
-        </Button>
+        <div className="flex gap-2.5 justify-center items-center">
+          <ToggleTheme />
+          <Button variant="outline" onClick={handleHamburger}>
+            <X />
+          </Button>
+        </div>
       </header>
 
       <ul className="flex flex-col gap-4 px-4 sm:px-6">
@@ -58,11 +62,11 @@ export default function Sidebar() {
   const sideBarElements = sideLinks.map((sideLink) => {
     return (
       <li
-        className="group hover:bg-foreground/5 p-2 rounded-md"
+        className="group hover:bg-foreground/5 rounded-md"
         key={sideLink.href}
       >
         <Link
-          className={`text-sm font-medium flex items-center gap-3 group-hover:text-foreground ${onlyFirstPath === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
+          className={`p-2 text-sm font-medium flex items-center gap-3 group-hover:text-foreground ${onlyFirstPath === sideLink.href ? "text-foreground" : "text-muted-foreground"}`}
           href={sideLink.href}
         >
           <sideLink.icon className="size-5" />
@@ -73,17 +77,27 @@ export default function Sidebar() {
   });
 
   return (
-    <div className="flex justify-between lg:flex-col lg:justify-start lg:h-full border-r px-4 py-6">
-      <Placeholderlogo className="mb-6" />
-      <Button
-        variant="outline"
-        onClick={() => setHamburger(false)}
-        className="lg:hidden"
-      >
-        <Menu />
-      </Button>
+    <nav className="flex justify-between lg:flex-col lg:justify-start lg:h-full border-r px-4 py-6">
+      <div className="flex justify-between items-center pb-6 w-full">
+        <Link href={"/"}>
+          <Placeholderlogo />
+        </Link>
+
+        <div className="flex gap-2.5 justify-center items-center">
+          <ToggleTheme />
+
+          <Button
+            variant="outline"
+            onClick={() => setHamburger(true)}
+            className="lg:hidden"
+          >
+            <Menu />
+          </Button>
+        </div>
+      </div>
+
       <ul className="hidden lg:flex flex-col gap-0.5">{sideBarElements}</ul>
       {hamburger && <HamburgerOpen handleHamburger={handleHamburger} />}
-    </div>
+    </nav>
   );
 }

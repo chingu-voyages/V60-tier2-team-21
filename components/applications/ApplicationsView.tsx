@@ -1,6 +1,7 @@
 "use client";
 
 import { Calendar, MapIcon, PenTool, StickyNote, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -104,7 +105,9 @@ const ApplicationsView = () => {
                 className="text-muted-foreground transition-colors hover:bg-muted/70 cursor-default"
               >
                 <TableCell className="py-4 pl-5 font-medium text-foreground">
-                  {application.companyName}
+                  <Link href={`applications/${application.id}`}>
+                    {application.companyName}
+                  </Link>
                 </TableCell>
 
                 <TableCell className="px-2.5 py-4">
@@ -163,7 +166,7 @@ const ApplicationsView = () => {
       </div>
       {/* smaller screens=> cards */}
       <div className="md:hidden">
-        <ul className="p-8">
+        <ul>
           {applicationsList.map((application) => (
             <li key={application.id}>
               <Card className="mb-2.5">

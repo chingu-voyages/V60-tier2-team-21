@@ -5,7 +5,7 @@ export default function DashboardHeader() {
   return (
     <header className="flex-col flex">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl sm:text-xl font-medium leading-none tracking-tighter pb-12">
+        <h1 className="text-2xl sm:text-xl font-medium leading-none tracking-tight pb-12">
           Good afteroon, Bob.
         </h1>
       </div>

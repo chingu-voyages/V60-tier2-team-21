@@ -16,39 +16,7 @@ export const navigationLink = [
 export const sideLinks = [
   { href: "/dashboard", name: "Dashboard", icon: LayoutDashboard },
   { href: "/applications", name: "Applications", icon: Folder },
-  { href: "/new-entry", name: "New Entry", icon: CirclePlus },
   { href: "/analytics", name: "Analytics", icon: ChartColumnBig },
-];
-
-export const dashboardProfileDataCards: DashboardDataCards[] = [
-  {
-    title: "Applied to int.",
-    value: 18.7,
-    trendPercentage: 12,
-    trendDirection: "up",
-    trendLabel: "From last week",
-  },
-  {
-    title: "Int. to offer",
-    value: 12.5,
-    trendPercentage: 6,
-    trendDirection: "up",
-    trendLabel: "From last week",
-  },
-  {
-    title: "Response rate",
-    value: 64,
-    trendPercentage: 13,
-    trendDirection: "up",
-    trendLabel: "From last week",
-  },
-  {
-    title: "Average response",
-    value: 4.2,
-    trendPercentage: 17,
-    trendDirection: "down",
-    trendLabel: "From last week",
-  },
 ];
 
 export const dashboardDataCards: DashboardDataCards[] = [

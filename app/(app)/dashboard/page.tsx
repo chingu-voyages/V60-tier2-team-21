@@ -9,7 +9,6 @@ export default function Dashboard() {
       <DashboardHeader />
       <DashboardCardOverview />
       <DashboardChart />
-      <DashboardCardProfile />
     </section>
   );
 }

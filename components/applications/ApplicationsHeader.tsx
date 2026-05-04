@@ -18,12 +18,12 @@ export default function ApplicationHeader() {
   return (
     <header className="flex-col flex">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl sm:text-xl font-medium leading-none tracking-tighter pb-12">
+        <h1 className="text-2xl sm:text-xl font-medium leading-none tracking-tight pb-12">
           Applications
         </h1>
       </div>
 
-      <div className="flex justify-between items-center border-b pb-4">
+      <div className="flex justify-between items-center border-b pb-4 flex-wrap gap-4">
         <div className="flex gap-4">
           <Button variant="secondary">
             <Search />
@@ -55,3 +55,5 @@ export default function ApplicationHeader() {
     </header>
   );
 }
+
+// <div className="flex justify-between items-start gap-y-2 sm:items-center border-b pb-4 sm:flex-row flex-col">
