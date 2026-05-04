@@ -14,10 +14,10 @@ const ApplicationsList = () => {
     return (
       <div className="flex flex-col items-center pt-40">
         <p className="text-foreground pb-2"> Not found</p>
-        <Link href="/applications">
+        <Link href="/dashboard">
           <Button variant="outline" className="text-muted-foreground">
             <ArrowLeft className="size-4" />
-            Applications
+            Dashboard
           </Button>
         </Link>
       </div>

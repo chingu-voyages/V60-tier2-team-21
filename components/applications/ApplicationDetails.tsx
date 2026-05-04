@@ -29,9 +29,9 @@ import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
 const ApplicationDetails = ({ id }: { id: string }) => {
   const application = useApplicationsStore((state) => state.applications[id]);
-  console.log("Application:", application);
   const [editingApplication, setEditingApplication] =
     useState<Application | null>(null);
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const { removeApplication } = useApplicationsStore();
 

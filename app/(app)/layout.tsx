@@ -9,9 +9,7 @@ export default function AppLayout({
   return (
     <div className="lg:grid grid-cols-[256px_auto] min-h-dvh">
       <Sidebar />
-      <main className="mx-auto w-full max-w-6xl px-6 py-6 lg:px-10">
-        {children}
-      </main>
+      <main className="mx-auto w-full max-w-6xl p-6 lg:p-10">{children}</main>
     </div>
   );
 }
