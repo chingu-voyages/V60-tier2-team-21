@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import ApplicationsView from "@/components/applications/ApplicationsView";
+import FilterSection from "@/components/FilterSection";
 import { Input } from "@/components/ui/input";
 
 export default function Dashboard() {
@@ -28,7 +28,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <ApplicationsView />
+      <FilterSection />
     </div>
   );
 }

@@ -21,7 +21,7 @@ import {
 import { INITIAL_APPLICATIONS } from "@/store/applications/data";
 import type { Application } from "@/store/applications/types";
 
-// import ApplicationsView from "./applications/ApplicationsView";
+import ApplicationsView from "./applications/ApplicationsView";
 
 type statusType =
   | "Applied"
@@ -177,7 +177,7 @@ const FilterSection = () => {
                   <ChevronDown />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="max-w-auto p-0" align="start">
+              <PopoverContent className="w-full p-1" align="start">
                 <Calendar
                   mode="range"
                   defaultMonth={date?.from}
@@ -193,7 +193,9 @@ const FilterSection = () => {
         {/* clear filter */}
         <Button onClick={() => clearFilter()}>Clear Filter</Button>
       </div>
-      {/* <ApplicationsView applicationsList={filteredApplication} /> */}
+      <div className="">
+        <ApplicationsView applicationsList={filteredApplication} />
+      </div>
     </div>
   );
 };
