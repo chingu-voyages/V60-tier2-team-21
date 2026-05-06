@@ -102,63 +102,83 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
           onSubmit={applicationForm.handleSubmit(handleFormSubmit)}
         >
           <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="company-name">Company Name</FieldLabel>
-              <Input
-                {...applicationForm.register("companyName")}
-                id="company-name"
-                type="text"
-                placeholder="e.g ABC Corp."
-              />
-              {applicationForm.formState.errors.companyName && (
-                <FieldError
-                  errors={[applicationForm.formState.errors.companyName]}
-                />
+            <Controller
+              name="companyName"
+              control={applicationForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="company-name">Company Name</FieldLabel>
+                  <Input
+                    {...field}
+                    id="company-name"
+                    type="text"
+                    placeholder="e.g ABC Corp."
+                  />
+                  {fieldState.error && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
               )}
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="role">Role</FieldLabel>
-              <Input
-                {...applicationForm.register("role")}
-                id="role"
-                type="text"
-                placeholder="e.g. Project Manager"
-              />
-              {applicationForm.formState.errors.role && (
-                <FieldError errors={[applicationForm.formState.errors.role]} />
+            />
+            <Controller
+              name="role"
+              control={applicationForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="role">Role</FieldLabel>
+                  <Input
+                    {...field}
+                    id="role"
+                    type="text"
+                    placeholder="e.g Project Manager."
+                  />
+                  {fieldState.error && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
               )}
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="date">Date Applied</FieldLabel>
-              <Input
-                {...applicationForm.register("date")}
-                id="date"
-                type="date"
-                placeholder="Date Applied"
-              />
-              {applicationForm.formState.errors.date && (
-                <FieldError errors={[applicationForm.formState.errors.date]} />
+            />
+            <Controller
+              name="date"
+              control={applicationForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="date">Date Applied</FieldLabel>
+                  <Input
+                    {...field}
+                    id="date"
+                    type="date"
+                    placeholder="Date Applied"
+                  />
+                  {fieldState.error && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
               )}
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="location">Location</FieldLabel>
-              <Input
-                {...applicationForm.register("location")}
-                id="location"
-                type="text"
-                placeholder="e.g. Remote (USA)"
-              />
-            </Field>
+            />
+
+            <Controller
+              name="location"
+              control={applicationForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="location">Location</FieldLabel>
+                  <Input
+                    {...field}
+                    id="location"
+                    type="text"
+                    placeholder="e.g Remote (USA)"
+                  />
+                </Field>
+              )}
+            />
             <Controller
               name="status"
               control={applicationForm.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="status">Status</FieldLabel>
-                  <Select
-                    defaultValue={field.value}
-                    onValueChange={field.onChange}
-                  >
+                  <Select value={field.value} onValueChange={field.onChange}>
                     <SelectTrigger id="status" className="w-45">
                       <SelectValue placeholder="Select Status" />
                     </SelectTrigger>
@@ -177,15 +197,21 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
                 </Field>
               )}
             />
-            <Field>
-              <FieldLabel htmlFor="notes">Notes</FieldLabel>
-              <Textarea
-                {...applicationForm.register("notes")}
-                id="notes"
-                placeholder="My thoughts..."
-                className="block"
-              />
-            </Field>
+
+            <Controller
+              name="notes"
+              control={applicationForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="notes">Notes</FieldLabel>
+                  <Textarea
+                    {...field}
+                    id="notes"
+                    placeholder="My thoughts..."
+                  />
+                </Field>
+              )}
+            />
           </FieldGroup>
           {submitted && (
             <p className="text-center text-base">🎉 Submitted successfully</p>
