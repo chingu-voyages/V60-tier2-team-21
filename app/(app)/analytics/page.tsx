@@ -90,7 +90,7 @@ const ApplicationFunnel = ({
           return (
             <div
               key={bar.status}
-              className={`px-4 py-3 md:px-6 md:py-5 flex justify-between rounded-lg  m-auto min-w-56 ${bar.className} ${maxCount === bar.count ? "w-full" : minCount === bar.count ? "w-1/3" : "w-1/2"}`}
+              className={`px-4 py-3 md:px-6 md:py-5 flex justify-between items-center rounded-lg  m-auto min-w-56 ${bar.className} ${maxCount === bar.count ? "w-full" : minCount === bar.count ? "w-1/3" : "w-1/2"}`}
             >
               <p className="font-bold text-base">{bar.status}</p>
               <p className="font-extrabold text-2xl">{bar.count || "0"}</p>
