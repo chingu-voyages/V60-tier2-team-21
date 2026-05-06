@@ -63,16 +63,6 @@ const ApplicationsView = () => {
 
   if (!hydrated) return null;
 
-  // TO DO: handle empty application state
-  // if (applicationsList.length === 0) {
-  //   return (
-  //     <div className="m-auto pt-30 max-w-fit">
-  //       <p>Empty Applications</p>
-  //       <Button onClick={resetApplications}>Reset Applications</Button>
-  //     </div>
-  //   );
-  // }
-
   return (
     <>
       {/* larger screens=> table */}
@@ -129,26 +119,32 @@ const ApplicationsView = () => {
                 </TableCell>
 
                 <TableCell>
-                  <Dialog>
-                    <DialogTrigger
-                      asChild
-                      aria-label="See the note"
-                      title="See the note"
-                    >
-                      <Button variant="ghost" className="cursor-pointer">
-                        <StickyNote />
-                      </Button>
-                    </DialogTrigger>
+                  {application.notes.length === 0 ? (
+                    <Button variant="ghost" className="cursor-pointer" disabled>
+                      <StickyNote />
+                    </Button>
+                  ) : (
+                    <Dialog>
+                      <DialogTrigger
+                        asChild
+                        aria-label="See the note"
+                        title="See the note"
+                      >
+                        <Button variant="ghost" className="cursor-pointer">
+                          <StickyNote />
+                        </Button>
+                      </DialogTrigger>
 
-                    <DialogContent showCloseButton={false}>
-                      <DialogHeader>
-                        <DialogTitle>Notes</DialogTitle>
-                        <DialogDescription>
-                          {application.notes}
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
+                      <DialogContent showCloseButton={false}>
+                        <DialogHeader>
+                          <DialogTitle>Notes</DialogTitle>
+                          <DialogDescription>
+                            {application.notes}
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                  )}
                 </TableCell>
 
                 <TableCell>

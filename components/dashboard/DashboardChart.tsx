@@ -76,12 +76,6 @@ export default function DashboardChart() {
     return date >= startDate;
   });
 
-  // 	let finalCharData = []
-  // 	Object.values(ApplicationStatus).map((status) => {
-  // 		let countCurrStatus = filteredData.filter((el) => el.status === status)
-  // 		finalCharData = [...finalCharData, {[status]: countCurrStatus.length}]
-  // 	})
-
   return (
     <Card className="pt-0">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
