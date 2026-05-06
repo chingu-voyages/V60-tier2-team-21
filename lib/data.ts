@@ -1,16 +1,11 @@
 import type { DashboardDataCards } from "@lib/types.ts";
 
-import {
-  ChartColumnBig,
-  CirclePlus,
-  Folder,
-  LayoutDashboard,
-} from "lucide-react";
+import { ChartColumnBig, Folder, LayoutDashboard } from "lucide-react";
 
 export const navigationLink = [
-  { name: "Home", href: "/" },
-  { name: "Features", href: "/features" },
-  { name: "Team", href: "/pricing" },
+  { name: "Dashboard", href: "/dashboard" },
+  { name: "Applications", href: "/applications" },
+  { name: "Analytics", href: "analytics" },
 ];
 
 export const sideLinks = [

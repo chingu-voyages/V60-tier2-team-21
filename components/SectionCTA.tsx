@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/ui/section-header";
 
@@ -14,7 +15,12 @@ export default function SectionCTA() {
           description="Your next job is out there. Let's make sure you don't miss a single opportunity."
         />
         <Button variant="default" size="lg">
-          Get started <ArrowRight className="size-4" />
+          <Link
+            href="/applications"
+            className="flex justify-center items-center gap-1"
+          >
+            Get started <ArrowRight className="size-4" />
+          </Link>
         </Button>
       </div>
     </section>

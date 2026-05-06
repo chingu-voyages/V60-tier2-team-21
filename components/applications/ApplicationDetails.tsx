@@ -30,7 +30,7 @@ import useApplicationsStore from "@/store/applications/useApplicationsStore";
 type StatusVariant =
   | "applied"
   | "offered"
-  | "interviewing"
+  | "interview"
   | "pending"
   | "rejected";
 

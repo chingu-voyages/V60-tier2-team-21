@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, MapIcon, PenTool, StickyNote, X } from "lucide-react";
+import { Calendar, MapIcon, PenTool, StickyNote } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -29,11 +29,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import type {
-  Application,
-  ApplicationStatus,
-} from "@/store/applications/types";
+import type { Application } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
+import { ApplicationStatusDropDown } from "../ui/ApplicationStatusDropDown";
 import EditApplicationModal from "./actions/EditApplicationModal";
 import SettingsDropDown from "./actions/SettingsDropdown";
 
@@ -48,9 +46,7 @@ const tableColumns = [
 ];
 
 const ApplicationsView = () => {
-  const [openNote, setOpenNote] = useState<null | string>(null);
-
-  const { applications, resetApplications } = useApplicationsStore();
+  const { applications } = useApplicationsStore();
   const applicationsList = Object.values(applications).sort((a, b) =>
     b.date.localeCompare(a.date),
   );
@@ -123,9 +119,7 @@ const ApplicationsView = () => {
                 </TableCell>
 
                 <TableCell className="px-2.5 py-4">
-                  <Badge variant={application.status.toLowerCase()}>
-                    {application.status}
-                  </Badge>
+                  <ApplicationStatusDropDown applicationId={application.id} />
                 </TableCell>
 
                 <TableCell>
@@ -180,7 +174,9 @@ const ApplicationsView = () => {
                     </p>
                   </CardTitle>
                   <div className="w-auto flex gap-2">
-                    <Badge variant={application.status.toLowerCase()}>
+                    <Badge
+                      variant={application.status.toLowerCase() as "default"}
+                    >
                       {application.status}
                     </Badge>
 

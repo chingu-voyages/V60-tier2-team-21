@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import AnalyticsHeader from "@/components/analytics/AnalyticsHeader";
 import { ApplicationStatus } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
@@ -21,6 +22,15 @@ export default function Analytics() {
     },
     {} as Record<ApplicationStatus, number>,
   );
+
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    useApplicationsStore.persist.rehydrate();
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) return null;
 
   return (
     <section className="flex flex-col gap-12 mb-15">
@@ -46,19 +56,19 @@ const ApplicationFunnel = ({
   const funnelBars = [
     {
       status: ApplicationStatus.Applied,
-      count: applicationsData[ApplicationStatus.Applied],
+      count: applicationsData[ApplicationStatus.Applied] || 0,
       className:
         "text-[#243552] bg-[#DBE3F5] dark:text-[#DBE3F5] dark:bg-[#243552] blue:text-[#002E6A] blue:bg-[#ADC6FF]",
     },
     {
       status: ApplicationStatus.Interviewing,
-      count: applicationsData[ApplicationStatus.Interviewing],
+      count: applicationsData[ApplicationStatus.Interviewing] || 0,
       className:
         "text-[#1E3A6F] bg-[#D6E2FB] dark:text-[#D6E2FB] dark:bg-[#1E3A6F] blue:text-[#D6E3FF] blue:bg-[#4D8EFF99]",
     },
     {
       status: ApplicationStatus.Offered,
-      count: applicationsData[ApplicationStatus.Offered],
+      count: applicationsData[ApplicationStatus.Offered] || 0,
       className:
         "text-[#0F5C2A] bg-[#D4EFD9] dark:text-[#D4EFD9] dark:bg-[#0F5C2A] blue:text-[#C2C6D6] blue:bg-[#243552]",
     },
@@ -83,7 +93,7 @@ const ApplicationFunnel = ({
               className={`px-4 py-3 md:px-6 md:py-5 flex justify-between rounded-lg  m-auto min-w-56 ${bar.className} ${maxCount === bar.count ? "w-full" : minCount === bar.count ? "w-1/3" : "w-1/2"}`}
             >
               <p className="font-bold text-base">{bar.status}</p>
-              <p className="font-extrabold text-2xl">{bar.count}</p>
+              <p className="font-extrabold text-2xl">{bar.count || "0"}</p>
             </div>
           );
         })}
