@@ -48,3 +48,10 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     notes: "Applied via company website, awaiting response.",
   },
 };
+
+// Create initialChartData based on InitialApplciations
+// export let chartData = [];
+// for (const key in INITIAL_APPLICATIONS) {
+// 		let currObj = INITIAL_APPLICATIONS[key]
+// 		chartData = [...chartData, {date: currObj.date, status: currObj.status}]
+// }

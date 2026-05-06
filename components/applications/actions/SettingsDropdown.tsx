@@ -1,6 +1,13 @@
 "use client";
 
-import { CogIcon, Ellipsis, EllipsisVertical, Trash2 } from "lucide-react";
+import {
+  ArrowRight,
+  CogIcon,
+  Ellipsis,
+  EllipsisVertical,
+  Trash2,
+} from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import {
   AlertDialog,
@@ -47,11 +54,28 @@ const SettingsDropDown = ({ applicationId, onEdit }: Props) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem className="cursor-pointer" onClick={onEdit}>
-              <CogIcon size={16} /> <span>Edit</span>
+            <DropdownMenuItem
+              variant="default"
+              className="cursor-pointer"
+              aria-label="View application details"
+              asChild
+            >
+              <Link href={`applications/${applicationId}`}>
+                <ArrowRight size={16} className="text-current" />
+                <span>View</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="cursor-pointer text-red-400"
+              variant="default"
+              className="cursor-pointer"
+              onClick={onEdit}
+            >
+              <CogIcon size={16} />
+              <span>Edit</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              variant="destructive"
+              className="cursor-pointer"
               onClick={() => {
                 setDialogOpen(true);
               }}

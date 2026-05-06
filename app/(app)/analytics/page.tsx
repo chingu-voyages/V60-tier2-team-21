@@ -1,22 +1,24 @@
 "use client";
 
+import AnalyticsHeader from "@/components/analytics/AnalyticsHeader";
 import {
   type Application,
   ApplicationStatus,
 } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
-export default function Dashboard() {
+export default function Analytics() {
   const { applications } = useApplicationsStore();
   const applicationsList = Object.values(applications);
-
   return (
-    <div>
+    <section className="flex flex-col gap-12">
+      <AnalyticsHeader />
+
       <div className="flex flex-col md:flex-row gap-4 md:gap-8">
         <ApplicationFunnel applications={applicationsList} />
         <StatusDistribution applications={applicationsList} />
       </div>
-    </div>
+    </section>
   );
 }
 

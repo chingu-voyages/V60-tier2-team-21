@@ -15,14 +15,12 @@ const EditApplicationModal = ({ application, onClose }: Props) => {
   const { updateApplication } = useApplicationsStore();
 
   useEffect(() => {
+    if (!application) return;
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = "";
     };
-  }, []);
-
-  if (!application) return null;
+  }, [application]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 p-4">
