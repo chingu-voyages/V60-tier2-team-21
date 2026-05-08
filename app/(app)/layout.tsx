@@ -7,9 +7,9 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="sm:grid grid-cols-[256px_1fr] min-h-screen">
+    <div className="lg:grid grid-cols-[256px_auto] min-h-dvh">
       <Sidebar />
-      <main className="mx-auto w-full max-w-2xl px-3 py-4">{children}</main>
+      <main className="mx-auto w-full max-w-6xl p-6 lg:p-10">{children}</main>
     </div>
   );
 }
