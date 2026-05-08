@@ -73,7 +73,7 @@ const ApplicationsView = () => {
                     "py-4 text-sm font-medium text-muted-foreground",
                     col === "Company"
                       ? "pl-5"
-                      : col === "Notes"
+                      : col === "Settings"
                         ? "pr-5"
                         : "px-2.5",
                   )}
@@ -141,7 +141,7 @@ const ApplicationsView = () => {
                   )}
                 </TableCell>
 
-                <TableCell>
+                <TableCell className="pr-5 py-4">
                   <SettingsDropDown
                     applicationId={application.id}
                     onEdit={() => {
