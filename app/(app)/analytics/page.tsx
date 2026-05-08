@@ -61,8 +61,8 @@ const ApplicationFunnel = ({
         "text-[#243552] bg-[#DBE3F5] dark:text-[#DBE3F5] dark:bg-[#243552] blue:text-[#002E6A] blue:bg-[#ADC6FF]",
     },
     {
-      status: ApplicationStatus.Interviewing,
-      count: applicationsData[ApplicationStatus.Interviewing] || 0,
+      status: ApplicationStatus.Interview,
+      count: applicationsData[ApplicationStatus.Interview] || 0,
       className:
         "text-[#1E3A6F] bg-[#D6E2FB] dark:text-[#D6E2FB] dark:bg-[#1E3A6F] blue:text-[#D6E3FF] blue:bg-[#4D8EFF99]",
     },
@@ -107,7 +107,7 @@ const STATUS_DOTS_VARIANTS: Record<ApplicationStatus, string> = {
     "bg-[#DBE3F5] dark:bg-[#243552] blue:bg-[#ADC6FF]",
   [ApplicationStatus.Pending]:
     "bg-[#FFF0C7] dark:bg-[#7A5600] blue:bg-[#FFD66B]",
-  [ApplicationStatus.Interviewing]:
+  [ApplicationStatus.Interview]:
     "bg-[#D6E2FB] dark:bg-[#1E3A6F] blue:bg-[#4D8EFF]",
   [ApplicationStatus.Rejected]:
     "bg-[#FCD6D3] dark:bg-[#7A0000] blue:bg-[#FF8A80]",
@@ -183,7 +183,7 @@ const PercentageCards = ({
   applicationsData: Record<ApplicationStatus, number>;
 }) => {
   const applied = applicationsData[ApplicationStatus.Applied] || 0;
-  const interview = applicationsData[ApplicationStatus.Interviewing] || 0;
+  const interview = applicationsData[ApplicationStatus.Interview] || 0;
   const rejected = applicationsData[ApplicationStatus.Rejected] || 0;
   const offered = applicationsData[ApplicationStatus.Offered] || 0;
 

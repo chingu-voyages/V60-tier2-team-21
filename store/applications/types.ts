@@ -1,7 +1,7 @@
 export enum ApplicationStatus {
   Applied = "Applied",
   Pending = "Pending",
-  Interviewing = "Interview",
+  Interview = "Interview",
   Rejected = "Rejected",
   Offered = "Offered",
 }
