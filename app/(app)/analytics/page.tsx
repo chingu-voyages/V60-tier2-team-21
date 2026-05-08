@@ -1,5 +1,6 @@
 "use client";
 
+import { cva } from "class-variance-authority";
 import { CloudCheck, ShieldX, Snowflake, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import AnalyticsHeader from "@/components/analytics/AnalyticsHeader";
@@ -97,17 +98,25 @@ const ApplicationFunnel = ({
   );
 };
 
-const STATUS_DOTS_VARIANTS: Record<ApplicationStatus, string> = {
-  [ApplicationStatus.Applied]:
-    "bg-[#DBE3F5] dark:bg-[#243552] blue:bg-[#ADC6FF]",
-  [ApplicationStatus.Pending]:
-    "bg-[#FFF0C7] dark:bg-[#7A5600] blue:bg-[#FFD66B]",
-  [ApplicationStatus.Interview]:
-    "bg-[#D6E2FB] dark:bg-[#1E3A6F] blue:bg-[#4D8EFF]",
-  [ApplicationStatus.Rejected]:
-    "bg-[#FCD6D3] dark:bg-[#7A0000] blue:bg-[#FF8A80]",
-  [ApplicationStatus.Offered]:
-    "bg-[#D4EFD9] dark:bg-[#0F5C2A] blue:bg-[#C2C6D6]",
+const distributionDotVariants = cva("rounded-full w-3 h-3 inline-block", {
+  variants: {
+    variant: {
+      [ApplicationStatus.Applied]:
+        "bg-[#DBE3F5] dark:bg-[#243552] blue:bg-[#ADC6FF]",
+      [ApplicationStatus.Pending]:
+        "bg-[#FFF0C7] dark:bg-[#7A5600] blue:bg-[#FFD66B]",
+      [ApplicationStatus.Interview]:
+        "bg-[#D6E2FB] dark:bg-[#1E3A6F] blue:bg-[#4D8EFF]",
+      [ApplicationStatus.Offered]:
+        "bg-[#D4EFD9] dark:bg-[#0F5C2A] blue:bg-[#C2C6D6]",
+      [ApplicationStatus.Rejected]:
+        "bg-[#FCD6D3] dark:bg-[#7A0000] blue:bg-[#FF8A80]",
+    },
+  },
+});
+
+const StatusDistributionDot = ({ variant }: { variant: ApplicationStatus }) => {
+  return <span className={distributionDotVariants({ variant })}></span>;
 };
 
 const StatusDistribution = ({
@@ -128,9 +137,7 @@ const StatusDistribution = ({
               className="flex items-center justify-between text-foreground"
             >
               <span className="flex gap-2 items-center">
-                <span
-                  className={`rounded-full w-3 h-3 inline-block ${STATUS_DOTS_VARIANTS[status]}`}
-                />
+                <StatusDistributionDot variant={status} />
                 <span>{status}</span>
               </span>
 
