@@ -10,26 +10,12 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { ApplicationStatus } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
 interface Props {
   applicationId: string;
 }
-
-const STATUS_STYLES: Record<ApplicationStatus, string> = {
-  [ApplicationStatus.Applied]:
-    "bg-status-applied text-status-applied-foreground",
-  [ApplicationStatus.Pending]:
-    "bg-status-pending text-status-pending-foreground",
-  [ApplicationStatus.Interviewing]:
-    "bg-status-interviewing text-status-interviewing-foreground",
-  [ApplicationStatus.Rejected]:
-    "bg-status-rejected text-status-rejected-foreground",
-  [ApplicationStatus.Offered]:
-    "bg-status-offered text-status-offered-foreground",
-};
 
 export function ApplicationStatusDropDown({ applicationId }: Props) {
   const { applications, updateApplication } = useApplicationsStore(
@@ -48,18 +34,16 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="default"
-          className={`p-0 font-semibold uppercase text-xs px-3 rounded-full cursor-pointer h-auto py-1 ${STATUS_STYLES[application.status]}`}
+          variant={application.status.toLowerCase() as "default"}
+          className="p-0 uppercase text-[11px] px-2 py-0.5 rounded-full cursor-pointer h-auto"
         >
           <span className="rounded-full w-1.5 h-1.5 inline-block bg-current"></span>
           {application.status}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-32 bg-status-dropdown text-status-dropdown-foreground">
+      <DropdownMenuContent className="w-32">
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="text-status-dropdown-title-foreground">
-            Change Status
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Change Status</DropdownMenuLabel>
           <DropdownMenuRadioGroup
             value={application.status}
             onValueChange={(value) =>
@@ -74,6 +58,9 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
                   className="cursor-pointer font-medium uppercase text-xs"
                 >
                   {status}
+
+                  {/* <Badge className="rounded-full w-1.5 h-1.5 inline-block bg-current" variant={status.toLowerCase()}/> */}
+                  {/* <span className="rounded-full w-1.5 h-1.5 inline-block bg-current"></span> */}
                 </DropdownMenuRadioItem>
               );
             })}

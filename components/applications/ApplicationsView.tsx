@@ -1,7 +1,10 @@
 "use client";
 
-import { Calendar, Ellipsis, MapIcon, PenTool, X } from "lucide-react";
+import { Calendar, MapIcon, PenTool, StickyNote } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,6 +12,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -18,13 +29,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import type {
-  Application,
-  ApplicationStatus,
-} from "@/store/applications/types";
+import type { Application } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
-import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+import { ApplicationStatusDropDown } from "../ui/ApplicationStatusDropDown";
 import EditApplicationModal from "./actions/EditApplicationModal";
 import SettingsDropDown from "./actions/SettingsDropdown";
 
@@ -38,33 +45,11 @@ const tableColumns = [
   "Settings",
 ];
 
-const getStatusVariant = (status: ApplicationStatus) => {
-  switch (status) {
-    case "Applied":
-      return "applied";
-    case "Pending":
-      return "pending";
-    case "Rejected":
-      return "rejected";
-    case "Offered":
-      return "offered";
-    case "Interviewing":
-      return "interviewing";
-    default:
-      return "default";
-  }
-};
-const ApplicationsView = ({
-  applicationsList,
-}: {
-  applicationsList: Application[];
-}) => {
-  const [openNote, setOpenNote] = useState<null | string>(null);
-
-  const { applications, resetApplications } = useApplicationsStore();
-  // const applicationsList = Object.values(applications).sort((a, b) =>
-  //   b.date.localeCompare(a.date),
-  // );
+const ApplicationsView = () => {
+  const { applications } = useApplicationsStore();
+  const applicationsList = Object.values(applications).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
 
   const [editingApplication, setEditingApplication] =
     useState<Application | null>(null);
@@ -74,21 +59,11 @@ const ApplicationsView = ({
 
   if (!hydrated) return null;
 
-  // TO DO: handle empty application state
-  if (applicationsList.length === 0) {
-    return (
-      <div className="m-auto pt-30 max-w-fit">
-        <p>Empty Applications</p>
-        <Button onClick={resetApplications}>Reset Applications</Button>
-      </div>
-    );
-  }
-
   return (
     <>
       {/* larger screens=> table */}
-      <div className="rounded-xl md:border border-border bg-card overflow-hidden">
-        <Table className="hidden md:block w-full">
+      <div className="rounded-xl md:border md:border-border bg-card relative">
+        <Table className="hidden md:table w-full">
           <TableHeader>
             <TableRow className="bg-muted/70 hover:bg-muted/70 cursor-default">
               {tableColumns.map((col) => (
@@ -116,7 +91,9 @@ const ApplicationsView = ({
                 className="text-muted-foreground transition-colors hover:bg-muted/70 cursor-default"
               >
                 <TableCell className="py-4 pl-5 font-medium text-foreground">
-                  {application.companyName}
+                  <Link href={`applications/${application.id}`}>
+                    {application.companyName}
+                  </Link>
                 </TableCell>
 
                 <TableCell className="px-2.5 py-4">
@@ -132,43 +109,36 @@ const ApplicationsView = ({
                 </TableCell>
 
                 <TableCell className="px-2.5 py-4">
-                  <Badge
-                    variant={getStatusVariant(application.status)}
-                    className="w-full"
-                  >
-                    {application.status}
-                  </Badge>
+                  <ApplicationStatusDropDown applicationId={application.id} />
                 </TableCell>
 
-                <TableCell className="relative pr-2.5 py-4">
-                  {openNote === application.id && (
-                    <div>
-                      <button
-                        type="button"
-                        className="fixed inset-0"
-                        onClick={() => setOpenNote(null)}
-                      ></button>
-                      <Card className="absolute bg-foreground/85 w-60 h-30 top-0 right-0 z-100 text-accent/90 p-3 text-wrap">
-                        <p className="p-3">{application.notes}</p>
-                        <Button
-                          variant="ghost"
-                          type="button"
-                          onClick={() => setOpenNote(null)}
-                          className="absolute top-0.5 right-0 hover:bg-transparent hover:text-background cursor-pointer"
-                        >
-                          <X className="size-4 cursor-pointer" />
+                <TableCell>
+                  {application.notes.length === 0 ? (
+                    <Button variant="ghost" className="cursor-pointer" disabled>
+                      <StickyNote />
+                    </Button>
+                  ) : (
+                    <Dialog>
+                      <DialogTrigger
+                        asChild
+                        aria-label="See the note"
+                        title="See the note"
+                      >
+                        <Button variant="ghost" className="cursor-pointer">
+                          <StickyNote />
                         </Button>
-                      </Card>
-                    </div>
+                      </DialogTrigger>
+
+                      <DialogContent showCloseButton={false}>
+                        <DialogHeader>
+                          <DialogTitle>Notes</DialogTitle>
+                          <DialogDescription>
+                            {application.notes}
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
                   )}
-                  <Button
-                    variant="ghost"
-                    type="button"
-                    onClick={() => setOpenNote(application.id)}
-                    className="cursor-pointer"
-                  >
-                    <Ellipsis />
-                  </Button>
                 </TableCell>
 
                 <TableCell className="pr-5 py-4">
@@ -186,7 +156,7 @@ const ApplicationsView = ({
       </div>
       {/* smaller screens=> cards */}
       <div className="md:hidden">
-        <ul className="p-8">
+        <ul>
           {applicationsList.map((application) => (
             <li key={application.id}>
               <Card className="mb-2.5">
@@ -200,7 +170,9 @@ const ApplicationsView = ({
                     </p>
                   </CardTitle>
                   <div className="w-auto flex gap-2">
-                    <Badge variant={getStatusVariant(application.status)}>
+                    <Badge
+                      variant={application.status.toLowerCase() as "default"}
+                    >
                       {application.status}
                     </Badge>
 
@@ -242,11 +214,13 @@ const ApplicationsView = ({
         </ul>
       </div>
 
-      <EditApplicationModal
-        application={editingApplication}
-        onClose={() => setEditingApplication(null)}
-        key={editingApplication?.id}
-      />
+      {editingApplication && (
+        <EditApplicationModal
+          application={editingApplication}
+          onClose={() => setEditingApplication(null)}
+          key={editingApplication?.id}
+        />
+      )}
     </>
   );
 };

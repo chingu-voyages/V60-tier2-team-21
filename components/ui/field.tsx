@@ -74,7 +74,7 @@ function Field({
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
   return (
-    // biome-ignore lint/a11y/useSemanticElements: shadcn
+    // biome-ignore lint/a11y/useSemanticElements: shadcn generated code
     <div
       role="group"
       data-slot="field"
@@ -193,17 +193,19 @@ function FieldError({
     const uniqueErrors = [
       ...new Map(errors.map((error) => [error?.message, error])).values(),
     ];
-
-    if (uniqueErrors?.length === 1) {
-      //changed == to ===
+    // biome-ignore lint/suspicious/noDoubleEquals: shadcn generated code
+    if (uniqueErrors?.length == 1) {
       return uniqueErrors[0]?.message;
     }
 
     return (
       <ul className="ml-4 flex list-disc flex-col gap-1">
         {uniqueErrors.map(
-          (error) =>
-            error?.message && <li key={error.message}>{error.message}</li>, //changed key from index to error.message
+          (error, index) =>
+            error?.message && (
+              // biome-ignore lint/suspicious/noArrayIndexKey: no stable unique key available
+              <li key={index}>{error.message}</li>
+            ),
         )}
       </ul>
     );

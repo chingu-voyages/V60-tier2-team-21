@@ -131,6 +131,10 @@ Here’s a quick look at the app:
 
 ![Add New Application Screenshot](./public/screenshots/add-new-application.png)
 
+### Analytics
+
+![Analytics Screenshot](./public/screenshots/analytics.png)
+
 ## Team Documents
 
 You may find these helpful as you work together to organize your project.

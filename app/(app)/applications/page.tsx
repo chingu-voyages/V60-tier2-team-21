@@ -1,11 +1,12 @@
-import ApplicationsList from "@/components/applications/ApplicationsList";
+import ApplicationsHeader from "@/components/applications/ApplicationsHeader";
+import ApplicationsView from "@/components/applications/ApplicationsView";
 
 const ApplicationsPage = () => {
   return (
-    <main>
-      <h1>All Applications</h1>
-      <ApplicationsList />
-    </main>
+    <section className="flex flex-col gap-12">
+      <ApplicationsHeader />
+      <ApplicationsView />
+    </section>
   );
 };
 
