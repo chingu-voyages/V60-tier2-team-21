@@ -78,7 +78,7 @@ export default function Sidebar() {
 
   return (
     <nav className="flex justify-between lg:flex-col lg:justify-start lg:h-full border-r px-4 py-6">
-      <div className="flex justify-between items-center pb-6 w-full">
+      <div className="flex justify-between items-center lg:pb-6 w-full">
         <Link href={"/"}>
           <Placeholderlogo />
         </Link>

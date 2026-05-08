@@ -99,7 +99,7 @@ const ApplicationDetails = ({ id }: { id: string }) => {
         </div>
       </header>
 
-      <div className="flex flex-wrap gap-x-10 gap-y-4 items-center pb-12 text-base">
+      <div className="flex flex-wrap gap-x-10 gap-y-4 items-center pb-4 lg:pb-12 text-base">
         <div className="flex gap-3 items-center">
           <MapIcon className="size-4  text-muted-foreground" />
           <span className="text-sm sm:text-base">{application.location}</span>
