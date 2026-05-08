@@ -1,15 +1,10 @@
 "use client";
 
+import { CloudCheck, ShieldX, Snowflake, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import AnalyticsHeader from "@/components/analytics/AnalyticsHeader";
 import { ApplicationStatus } from "@/store/applications/types";
 import useApplicationsStore from "@/store/applications/useApplicationsStore";
-import {
-  AnalyticsCard1,
-  AnalyticsCard2,
-  AnalyticsCard3,
-  AnalyticsCard4,
-} from "./icons";
 
 export default function Analytics() {
   const { applications } = useApplicationsStore();
@@ -154,25 +149,25 @@ const CARDS = [
   {
     title: "Applied → Interview",
     activeBarClass: "bg-[#3B82F6] dark:bg-[#60A5FA] blue:bg-[#ADC6FF]",
-    IconComponent: AnalyticsCard1,
+    IconComponent: Snowflake,
     iconClass: "text-[#3B82F6] dark:text-[#60A5FA] blue:text-[#ADC6FF]",
   },
   {
     title: "Interview → Rejected",
     activeBarClass: "bg-[#F97316] dark:bg-[#FB923C] blue:bg-[#FFB786]",
-    IconComponent: AnalyticsCard2,
+    IconComponent: ShieldX,
     iconClass: "text-[#F97316] dark:text-[#FB923C] blue:text-[#FFB786]",
   },
   {
     title: "Interview → Offer",
     activeBarClass: "bg-[#93C5FD] dark:bg-[#BFDBFE] blue:bg-[#D6E3FF]",
-    IconComponent: AnalyticsCard3,
+    IconComponent: CloudCheck,
     iconClass: "text-[#93C5FD] dark:text-[#BFDBFE] blue:text-[#D6E3FF]",
   },
   {
     title: "Applied → Offer",
     activeBarClass: "bg-[#2563EB] dark:bg-[#3B82F6] blue:bg-[#4D8EFF]",
-    IconComponent: AnalyticsCard4,
+    IconComponent: Sparkles,
     iconClass: "text-[#2563EB] dark:text-[#3B82F6] blue:text-[#4D8EFF]",
   },
 ];
