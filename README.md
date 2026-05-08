@@ -131,6 +131,10 @@ Here’s a quick look at the app:
 
 ![Add New Application Screenshot](./public/screenshots/add-new-application.png)
 
+### Analytics
+
+![Analytics Screenshot](./public/screenshots/analytics.png)
+
 ## Team Documents
 
 You may find these helpful as you work together to organize your project.
@@ -152,7 +156,7 @@ Meeting Agenda templates (located in the `/docs` directory in this repo):
 - Zahra: [Github](https://github.com/ZahraSoley)
 - Deniz: [GitHub](https://github.com/zenidreney/) / [LinkedIn](https://linkedin.com/in/zenid)
 - Hajar: [GitHub](https://github.com/hajar-nasr)
-- Tochi (PRODUCT OWNER): [GitHub]([(https://github.com/Osira01]) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Tochi: [GitHub](https://github.com/Osira01) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Olu: [GitHub](https://github.com/doddy77512)
 
 ## 📄 License
