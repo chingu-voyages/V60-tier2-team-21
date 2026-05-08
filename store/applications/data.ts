@@ -15,7 +15,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     id: "app-2",
     companyName: "Neonbyte Health",
     role: "Frontend Engineer",
-    status: ApplicationStatus.Interviewing,
+    status: ApplicationStatus.Interview,
     date: "2026-03-22",
     location: "Berlin, Germany",
     notes: "Technical interview scheduled for next week.",

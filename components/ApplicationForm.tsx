@@ -95,7 +95,7 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
   }
 
   return (
-    <Card className="w-full max-w-md md:max-w-lg">
+    <Card>
       <CardContent>
         <form
           className="flex flex-col gap-3"

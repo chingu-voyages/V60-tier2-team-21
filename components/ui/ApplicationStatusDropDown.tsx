@@ -1,6 +1,5 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -35,8 +34,8 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant={application.status.toLowerCase()}
-          className="p-0 font-semibold uppercase text-xs px-3 rounded-full cursor-pointer h-auto py-1"
+          variant={application.status.toLowerCase() as "default"}
+          className="p-0 uppercase text-[11px] px-2 py-0.5 rounded-full cursor-pointer h-auto"
         >
           <span className="rounded-full w-1.5 h-1.5 inline-block bg-current"></span>
           {application.status}

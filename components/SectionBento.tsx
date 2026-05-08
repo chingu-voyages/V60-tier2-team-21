@@ -286,12 +286,12 @@ export function BentoStatus() {
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-10 translate-x-10 bg-background flex justify-between gap-4">
-        <Badge variant="interviewing">HR Interview</Badge>
+        <Badge variant="interview">HR Interview</Badge>
         <div className="w-full bg-muted rounded-xl" />
       </div>
 
       <div className="border rounded-2xl text-left p-4 -translate-y-12 translate-x-12 bg-background flex justify-between gap-4">
-        <Badge variant="interviewing">Managment Interview</Badge>
+        <Badge variant="interview">Managment Interview</Badge>
         <div className="w-full bg-muted rounded-xl" />
       </div>
     </>

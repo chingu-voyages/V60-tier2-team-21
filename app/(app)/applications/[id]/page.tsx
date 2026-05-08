@@ -1,7 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import ApplicationDetails from "@/components/applications/ApplicationDetails";
-import { Button } from "@/components/ui/button";
 
 const ApplicationPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;

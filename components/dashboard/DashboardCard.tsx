@@ -4,12 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+interface Props {
+  title: string;
+  value: number;
+  trendPercentage: number;
+  trendDirection: string;
+  trendLabel: string;
+}
 
 export default function DashboardCard({
   title,
@@ -17,7 +24,7 @@ export default function DashboardCard({
   trendPercentage,
   trendDirection,
   trendLabel,
-}) {
+}: Props) {
   return (
     <Card className="@container/card">
       <CardHeader>

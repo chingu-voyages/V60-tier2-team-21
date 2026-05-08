@@ -1,4 +1,5 @@
 import { Rocket } from "lucide-react";
+import Link from "next/link";
 import BlurFade from "@/components/ui/blur-fade";
 import { Button } from "@/components/ui/button";
 
@@ -32,11 +33,15 @@ export default function Hero() {
 
       <BlurFade delay={BLUR_FADE_DELAY * 4}>
         <div className="flex gap-4 justify-center items-center mb-10">
-          <Button size="lg">Go to dashboard</Button>
-
-          <Button variant="outline" size="lg">
-            View Demo
+          <Button size="lg" className="cursor-pointer">
+            <Link href="/dashboard">Go to dashboard</Link>
           </Button>
+
+          {/* <
+          // removing until we have a demo
+          Button variant="outline" size="lg">
+            View Demo
+          </Button> */}
         </div>
       </BlurFade>
 
