@@ -10,14 +10,7 @@ export default function DashboardHeader() {
         </h1>
       </div>
 
-      <div className="flex justify-between items-center border-b pb-4">
-        <h3 className="text-base font-semibold"> Dashboard </h3>
-
-        <Button variant="secondary">
-          <Search />
-          <span className="text-muted-foreground"> search applications </span>
-        </Button>
-      </div>
+      <h3 className="text-base font-semibold border-b pb-4"> Dashboard </h3>
     </header>
   );
 }

@@ -25,11 +25,6 @@ export default function ApplicationHeader() {
 
       <div className="flex justify-between items-center border-b pb-4 flex-wrap gap-4">
         <div className="flex gap-4">
-          <Button variant="secondary">
-            <Search />
-            <span className="text-muted-foreground"> search applications </span>
-          </Button>
-
           {/* Placeholder for  ApplicationFilter */}
           <Button variant="outline">Sorty by</Button>
         </div>
@@ -55,5 +50,3 @@ export default function ApplicationHeader() {
     </header>
   );
 }
-
-// <div className="flex justify-between items-start gap-y-2 sm:items-center border-b pb-4 sm:flex-row flex-col">
