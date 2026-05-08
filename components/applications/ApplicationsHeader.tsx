@@ -1,14 +1,10 @@
 "use client";
-import { Search, XIcon } from "lucide-react";
-import { useState } from "react";
 import ApplicationForm from "@/components/ApplicationForm";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,21 +14,19 @@ export default function ApplicationHeader() {
   return (
     <header className="flex-col flex">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl sm:text-xl font-medium leading-none tracking-tight pb-12">
+        <h1 className="text-2xl sm:text-xl font-medium leading-none tracking-tight pb-4">
           Applications
         </h1>
       </div>
 
-      <div className="flex justify-between items-center border-b pb-4 flex-wrap gap-4">
-        <div className="flex gap-4">
+      <div className="flex justify-end items-center border-b pb-4 flex-wrap gap-4">
+        {/* <div className="flex gap-4">
           <Button variant="secondary">
             <Search />
             <span className="text-muted-foreground"> search applications </span>
           </Button>
-
-          {/* Placeholder for  ApplicationFilter */}
           <Button variant="outline">Sorty by</Button>
-        </div>
+        </div> */}
 
         <Dialog>
           <DialogTrigger asChild>
