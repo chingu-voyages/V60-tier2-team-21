@@ -29,7 +29,7 @@ export default function Analytics() {
   if (!hydrated) return null;
 
   return (
-    <section className="flex flex-col gap-12 mb-15">
+    <section className="flex flex-col gap-6 lg:gap-12 mb-5 lg:mb-2">
       <AnalyticsHeader />
 
       <div className="space-y-6">

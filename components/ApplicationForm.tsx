@@ -71,7 +71,7 @@ export default function ApplicationForm({ application, onSubmit }: Props) {
         ...data,
         location: data.location ?? "",
         notes: data.notes ?? "",
-        id: uuid4(),
+        id: application?.id ?? uuid4(),
       });
 
     // NOTE TO DEVS: added solo fix for the location and notes types above and below in order to not to touch store types.ts
