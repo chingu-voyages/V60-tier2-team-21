@@ -1,6 +1,5 @@
-import type { DashboardDataCards } from "@lib/types.ts";
-
 import { ChartColumnBig, Folder, LayoutDashboard } from "lucide-react";
+import type { DashboardDataCards } from "@/lib/types";
 
 export const navigationLink = [
   { name: "Dashboard", href: "/dashboard" },

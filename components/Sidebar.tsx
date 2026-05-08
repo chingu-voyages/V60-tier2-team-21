@@ -53,7 +53,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   // Regex for getting the active path consume /apps/app produce /apps
   const onlyFirstPath =
-    pathname.match(/(\/(?:[A-Za-z0-9_]+)?)/g)[0] ?? "/dashboard";
+    pathname?.match(/(\/(?:[A-Za-z0-9_]+)?)/g)?.[0] ?? "/dashboard";
 
   function handleHamburger() {
     setHamburger(false);
