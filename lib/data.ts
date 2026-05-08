@@ -6,9 +6,8 @@ import {
 } from "lucide-react";
 
 export const navigationLink = [
-  { name: "Home", href: "/" },
-  { name: "Features", href: "/features" },
-  { name: "Team", href: "/pricing" },
+  { name: "Home", href: "#hero" },
+  { name: "Features", href: "#features" },
 ];
 
 export const sideLinks = [

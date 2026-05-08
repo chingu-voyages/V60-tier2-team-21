@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PlaceholderLogo from "@/components/PlaceholderLogo";
 import { navigationLink } from "@/lib/data";
 
@@ -9,9 +8,9 @@ export default function Footer() {
       className="pb-24 sm:pb-40 border-t pt-10 max-w-(--breakpoint-xl) mx-auto px-2 sm:px-4 md:px-10"
     >
       <div className="flex flex-col sm:flex-row gap-10 sm:gap-y-0 justify-between items-start">
-        <Link href="/">
+        <a href="#hero">
           <PlaceholderLogo className="text-foreground" />
-        </Link>
+        </a>
 
         <p className="max-w-(--breakpoint-sm) text-lg/7 font-medium text-muted-foreground">
           Move beyond the clutter of generic job boards. Curate your career
@@ -24,9 +23,9 @@ export default function Footer() {
           <ul className="flex flex-col gap-y-2">
             {navigationLink.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-base text-foreground">
+                <a href={link.href} className="text-base text-foreground">
                   {link.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
