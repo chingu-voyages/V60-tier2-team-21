@@ -140,7 +140,7 @@ const ApplicationsView = ({
                   )}
                 </TableCell>
 
-                <TableCell className="pr-5 py-4">
+                <TableCell className="pr-7.5 py-4">
                   <SettingsDropDown
                     applicationId={application.id}
                     onEdit={() => setEditingApplication(application)}

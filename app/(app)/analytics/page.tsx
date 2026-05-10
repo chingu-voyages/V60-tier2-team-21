@@ -1,7 +1,12 @@
 "use client";
 
 import { cva } from "class-variance-authority";
-import { CloudCheck, ShieldX, Snowflake, Sparkles } from "lucide-react";
+import {
+  Handshake,
+  MessageSquareTextIcon,
+  ShieldX,
+  Sparkles,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import AnalyticsHeader from "@/components/analytics/AnalyticsHeader";
 import { ApplicationStatus } from "@/store/applications/types";
@@ -156,7 +161,7 @@ const CARDS = [
   {
     title: "Applied → Interview",
     activeBarClass: "bg-[#3B82F6] dark:bg-[#60A5FA] blue:bg-[#ADC6FF]",
-    IconComponent: Snowflake,
+    IconComponent: MessageSquareTextIcon,
     iconClass: "text-[#3B82F6] dark:text-[#60A5FA] blue:text-[#ADC6FF]",
   },
   {
@@ -168,7 +173,7 @@ const CARDS = [
   {
     title: "Interview → Offer",
     activeBarClass: "bg-[#93C5FD] dark:bg-[#BFDBFE] blue:bg-[#D6E3FF]",
-    IconComponent: CloudCheck,
+    IconComponent: Handshake,
     iconClass: "text-[#93C5FD] dark:text-[#BFDBFE] blue:text-[#D6E3FF]",
   },
   {
