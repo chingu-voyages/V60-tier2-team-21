@@ -30,7 +30,6 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import type { Application } from "@/store/applications/types";
-import useApplicationsStore from "@/store/applications/useApplicationsStore";
 import { ApplicationStatusDropDown } from "../ui/ApplicationStatusDropDown";
 import EditApplicationModal from "./actions/EditApplicationModal";
 import SettingsDropDown from "./actions/SettingsDropdown";
@@ -45,16 +44,16 @@ const tableColumns = [
   "Settings",
 ];
 
-const ApplicationsView = () => {
-  const { applications } = useApplicationsStore();
-  const applicationsList = Object.values(applications).sort((a, b) =>
-    b.date.localeCompare(a.date),
-  );
-
+const ApplicationsView = ({
+  applicationsList,
+}: {
+  applicationsList: Application[];
+}) => {
   const [editingApplication, setEditingApplication] =
     useState<Application | null>(null);
 
   const [hydrated, setHydrated] = useState(false);
+
   useEffect(() => setHydrated(true), []);
 
   if (!hydrated) return null;
@@ -144,9 +143,7 @@ const ApplicationsView = () => {
                 <TableCell className="pr-5 py-4">
                   <SettingsDropDown
                     applicationId={application.id}
-                    onEdit={() => {
-                      setEditingApplication(application);
-                    }}
+                    onEdit={() => setEditingApplication(application)}
                   />
                 </TableCell>
               </TableRow>
@@ -154,6 +151,7 @@ const ApplicationsView = () => {
           </TableBody>
         </Table>
       </div>
+
       {/* smaller screens=> cards */}
       <div className="md:hidden">
         <ul>
@@ -165,10 +163,12 @@ const ApplicationsView = () => {
                     <h3 className="font-semibold text-lg mb-0.85">
                       {application.companyName}
                     </h3>
+
                     <p className="text-muted-foreground font-medium mb-2">
                       {application.role}
                     </p>
                   </CardTitle>
+
                   <div className="w-auto flex gap-2">
                     <Badge
                       variant={application.status.toLowerCase() as "default"}
@@ -178,9 +178,7 @@ const ApplicationsView = () => {
 
                     <SettingsDropDown
                       applicationId={application.id}
-                      onEdit={() => {
-                        setEditingApplication(application);
-                      }}
+                      onEdit={() => setEditingApplication(application)}
                     />
                   </div>
                 </CardHeader>
@@ -202,6 +200,7 @@ const ApplicationsView = () => {
                     </div>
                   </div>
                 </CardContent>
+
                 <CardFooter>
                   <p className="w-full flex font-lighter text-foreground/90 gap-1.5">
                     <PenTool className="size-4 shrink-0 mt-0.5" />
