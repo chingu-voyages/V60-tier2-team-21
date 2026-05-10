@@ -13,13 +13,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Table,
   TableBody,
@@ -117,8 +114,8 @@ const ApplicationsView = ({
                       <StickyNote />
                     </Button>
                   ) : (
-                    <Dialog>
-                      <DialogTrigger
+                    <Popover>
+                      <PopoverTrigger
                         asChild
                         aria-label="See the note"
                         title="See the note"
@@ -126,17 +123,12 @@ const ApplicationsView = ({
                         <Button variant="ghost" className="cursor-pointer">
                           <StickyNote />
                         </Button>
-                      </DialogTrigger>
+                      </PopoverTrigger>
 
-                      <DialogContent showCloseButton={false}>
-                        <DialogHeader>
-                          <DialogTitle>Notes</DialogTitle>
-                          <DialogDescription>
-                            {application.notes}
-                          </DialogDescription>
-                        </DialogHeader>
-                      </DialogContent>
-                    </Dialog>
+                      <PopoverContent className="max-w-72 text-sm leading-6">
+                        {application.notes}
+                      </PopoverContent>
+                    </Popover>
                   )}
                 </TableCell>
 
