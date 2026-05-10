@@ -1,7 +1,7 @@
 "use client";
 
 import { CalendarIcon, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { DateRange } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -18,70 +18,71 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { INITIAL_APPLICATIONS } from "@/store/applications/data";
-import type { Application } from "@/store/applications/types";
-
+import useApplicationsStore from "@/store/applications/useApplicationsStore";
 import ApplicationsView from "./applications/ApplicationsView";
 
-type statusType =
-  | "Applied"
-  | "Pending"
-  | "Rejected"
-  | "Offered"
-  | "Interviewing";
+type StatusType = "Applied" | "Pending" | "Rejected" | "Offered" | "Interview";
 
-const applications: Application[] = Object.values(INITIAL_APPLICATIONS);
-const sortedApplications = Object.values(applications).sort((a, b) =>
-  b.date.localeCompare(a.date),
-);
-const roles = [...new Set(applications.map((application) => application.role))]; //filter_dynamic
-const locations = [
-  ...new Set(applications.map((application) => application.location)),
-]; //filter_dynamic
+const defaultStatus: Record<StatusType, boolean> = {
+  Applied: true,
+  Pending: true,
+  Rejected: true,
+  Offered: true,
+  Interview: true,
+};
 
 const FilterSection = () => {
-  const [Status, setStatus] = useState<Record<statusType, boolean>>({
-    Applied: true,
-    Pending: true,
-    Rejected: true,
-    Offered: true,
-    Interviewing: true,
-  });
-  const [Role, setRole] = useState<Record<string, boolean>>(
-    Object.fromEntries(roles.map((role) => [role, true])),
+  const applicationsObject = useApplicationsStore(
+    (state) => state.applications,
   );
-  const [Loc, setLoc] = useState<Record<string, boolean>>(
-    Object.fromEntries(locations.map((loc) => [loc, true])),
+
+  const applications = useMemo(
+    () => Object.values(applicationsObject),
+    [applicationsObject],
   );
+
+  const sortedApplications = [...applications].sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
+
+  const roles = [
+    ...new Set(applications.map((application) => application.role)),
+  ];
+
+  const locations = [
+    ...new Set(applications.map((application) => application.location)),
+  ];
+
+  const [status, setStatus] =
+    useState<Record<StatusType, boolean>>(defaultStatus);
+
+  const [role, setRole] = useState<Record<string, boolean>>({});
+  const [loc, setLoc] = useState<Record<string, boolean>>({});
   const [date, setDate] = useState<DateRange>({
-    from: new Date(sortedApplications[sortedApplications.length - 1].date),
-    to: new Date(sortedApplications[0].date),
+    from: undefined,
+    to: undefined,
   });
 
-  const statuses = Object.keys(Status) as statusType[]; //filter_static
+  const statuses = Object.keys(status) as StatusType[];
+
   const filteredApplication = sortedApplications
-    .filter((apl) => Status[apl.status] === true)
-    .filter((apl) => Role[apl.role] === true)
-    .filter((apl) => Loc[apl.location] === true)
-    .filter((apl) =>
+    .filter((application) => status[application.status])
+    .filter((application) => role[application.role] !== false)
+    .filter((application) => loc[application.location] !== false)
+    .filter((application) =>
       date.from && date.to
-        ? new Date(apl.date) >= date.from && new Date(apl.date) <= date.to
+        ? new Date(application.date) >= date.from &&
+          new Date(application.date) <= date.to
         : true,
     );
 
   const clearFilter = () => {
-    setStatus({
-      Applied: true,
-      Pending: true,
-      Rejected: true,
-      Offered: true,
-      Interviewing: true,
-    });
-    setRole(Object.fromEntries(roles.map((role) => [role, true])));
-    setLoc(Object.fromEntries(locations.map((loc) => [loc, true])));
+    setStatus(defaultStatus);
+    setRole({});
+    setLoc({});
     setDate({
-      from: new Date(sortedApplications[sortedApplications.length - 1].date),
-      to: new Date(sortedApplications[0].date),
+      from: undefined,
+      to: undefined,
     });
   };
 
@@ -97,17 +98,21 @@ const FilterSection = () => {
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent className="w-48">
               <DropdownMenuGroup>
-                {statuses.map((status) => (
+                {statuses.map((option) => (
                   <DropdownMenuCheckboxItem
-                    key={status}
-                    checked={Status[status]}
+                    key={option}
+                    checked={status[option]}
                     onCheckedChange={(checked) =>
-                      setStatus({ ...Status, [status]: checked === true })
+                      setStatus((prev) => ({
+                        ...prev,
+                        [option]: checked === true,
+                      }))
                     }
                   >
-                    {status}
+                    {option}
                   </DropdownMenuCheckboxItem>
                 ))}
               </DropdownMenuGroup>
@@ -121,17 +126,21 @@ const FilterSection = () => {
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent className="w-48">
               <DropdownMenuGroup>
-                {roles.map((role) => (
+                {roles.map((option) => (
                   <DropdownMenuCheckboxItem
-                    key={role}
-                    checked={Role[role]}
+                    key={option}
+                    checked={role[option] !== false}
                     onCheckedChange={(checked) =>
-                      setRole({ ...Role, [role]: checked === true })
+                      setRole((prev) => ({
+                        ...prev,
+                        [option]: checked === true,
+                      }))
                     }
                   >
-                    {role}
+                    {option}
                   </DropdownMenuCheckboxItem>
                 ))}
               </DropdownMenuGroup>
@@ -145,17 +154,21 @@ const FilterSection = () => {
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent className="w-48">
               <DropdownMenuGroup>
-                {locations.map((loc) => (
+                {locations.map((option) => (
                   <DropdownMenuCheckboxItem
-                    key={loc}
-                    checked={Loc[loc]}
+                    key={option}
+                    checked={loc[option] !== false}
                     onCheckedChange={(checked) =>
-                      setLoc({ ...Loc, [loc]: checked === true })
+                      setLoc((prev) => ({
+                        ...prev,
+                        [option]: checked === true,
+                      }))
                     }
                   >
-                    {loc}
+                    {option}
                   </DropdownMenuCheckboxItem>
                 ))}
               </DropdownMenuGroup>
@@ -177,6 +190,7 @@ const FilterSection = () => {
                   <ChevronDown />
                 </Button>
               </PopoverTrigger>
+
               <PopoverContent className="w-full p-1" align="start">
                 <Calendar
                   mode="range"
@@ -193,9 +207,8 @@ const FilterSection = () => {
         {/* clear filter */}
         <Button onClick={() => clearFilter()}>Clear Filter</Button>
       </div>
-      <div className="">
-        <ApplicationsView applicationsList={filteredApplication} />
-      </div>
+
+      <ApplicationsView applicationsList={filteredApplication} />
     </div>
   );
 };
