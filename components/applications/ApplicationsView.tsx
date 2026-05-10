@@ -1,0 +1,219 @@
+"use client";
+
+import { Calendar, MapIcon, PenTool, StickyNote } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+import type { Application } from "@/store/applications/types";
+import { ApplicationStatusDropDown } from "../ui/ApplicationStatusDropDown";
+import EditApplicationModal from "./actions/EditApplicationModal";
+import SettingsDropDown from "./actions/SettingsDropdown";
+
+const tableColumns = [
+  "Company",
+  "Role",
+  "Date",
+  "Location",
+  "Status",
+  "Notes",
+  "Settings",
+];
+
+const ApplicationsView = ({
+  applicationsList,
+}: {
+  applicationsList: Application[];
+}) => {
+  const [editingApplication, setEditingApplication] =
+    useState<Application | null>(null);
+
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => setHydrated(true), []);
+
+  if (!hydrated) return null;
+
+  return (
+    <>
+      {/* larger screens=> table */}
+      <div className="rounded-xl md:border md:border-border bg-card relative">
+        <Table className="hidden md:table w-full">
+          <TableHeader>
+            <TableRow className="bg-muted/70 hover:bg-muted/70 cursor-default">
+              {tableColumns.map((col) => (
+                <TableHead
+                  key={col}
+                  className={cn(
+                    "py-4 text-sm font-medium text-muted-foreground",
+                    col === "Company"
+                      ? "pl-5"
+                      : col === "Settings"
+                        ? "pr-5"
+                        : "px-2.5",
+                  )}
+                >
+                  {col}
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {applicationsList.map((application) => (
+              <TableRow
+                key={application.id}
+                className="text-muted-foreground transition-colors hover:bg-muted/70 cursor-default"
+              >
+                <TableCell className="py-4 pl-5 font-medium text-foreground">
+                  <Link href={`applications/${application.id}`}>
+                    {application.companyName}
+                  </Link>
+                </TableCell>
+
+                <TableCell className="px-2.5 py-4">
+                  {application.role}
+                </TableCell>
+
+                <TableCell className="px-2.5 py-4">
+                  {application.date}
+                </TableCell>
+
+                <TableCell className="px-2.5 py-4">
+                  {application.location}
+                </TableCell>
+
+                <TableCell className="px-2.5 py-4">
+                  <ApplicationStatusDropDown applicationId={application.id} />
+                </TableCell>
+
+                <TableCell>
+                  {application.notes.length === 0 ? (
+                    <Button variant="ghost" className="cursor-pointer" disabled>
+                      <StickyNote />
+                    </Button>
+                  ) : (
+                    <Popover>
+                      <PopoverTrigger
+                        asChild
+                        aria-label="See the note"
+                        title="See the note"
+                      >
+                        <Button variant="ghost" className="cursor-pointer">
+                          <StickyNote />
+                        </Button>
+                      </PopoverTrigger>
+
+                      <PopoverContent className="max-w-72 text-sm leading-6">
+                        {application.notes}
+                      </PopoverContent>
+                    </Popover>
+                  )}
+                </TableCell>
+
+                <TableCell className="pr-7.5 py-4">
+                  <SettingsDropDown
+                    applicationId={application.id}
+                    onEdit={() => setEditingApplication(application)}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      {/* smaller screens=> cards */}
+      <div className="md:hidden">
+        <ul>
+          {applicationsList.map((application) => (
+            <li key={application.id}>
+              <Card className="mb-2.5">
+                <CardHeader className="flex justify-between">
+                  <CardTitle className="flex flex-col items-start">
+                    <h3 className="font-semibold text-lg mb-0.85">
+                      {application.companyName}
+                    </h3>
+
+                    <p className="text-muted-foreground font-medium mb-2">
+                      {application.role}
+                    </p>
+                  </CardTitle>
+
+                  <div className="w-auto flex gap-2">
+                    <Badge
+                      variant={application.status.toLowerCase() as "default"}
+                    >
+                      {application.status}
+                    </Badge>
+
+                    <SettingsDropDown
+                      applicationId={application.id}
+                      onEdit={() => setEditingApplication(application)}
+                    />
+                  </div>
+                </CardHeader>
+
+                <CardContent className="p-4 pb-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap justify-between items-center text-sm text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <MapIcon className="size-4" />
+                          {application.location}
+                        </span>
+
+                        <span className="flex items-center gap-1 pl-4">
+                          <Calendar className="size-4" />
+                          {application.date}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+
+                <CardFooter>
+                  <p className="w-full flex font-lighter text-foreground/90 gap-1.5">
+                    <PenTool className="size-4 shrink-0 mt-0.5" />
+                    {application.notes}
+                  </p>
+                </CardFooter>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {editingApplication && (
+        <EditApplicationModal
+          application={editingApplication}
+          onClose={() => setEditingApplication(null)}
+          key={editingApplication?.id}
+        />
+      )}
+    </>
+  );
+};
+
+export default ApplicationsView;
