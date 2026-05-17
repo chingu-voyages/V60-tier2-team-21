@@ -4,14 +4,15 @@ import { immer } from "zustand/middleware/immer";
 import { INITIAL_APPLICATIONS } from "./data";
 import type { Application, ApplicationsState } from "./types";
 
+const STORAGE_KEY = "aplico-store";
+
 const addApplication = (state: ApplicationsState, application: Application) => {
-  state.applications[application.id] = application;
-  return state;
+  state.applications.push(application);
 };
 
 const removeApplication = (state: ApplicationsState, id: string) => {
-  delete state.applications[id];
-  return state;
+  const index = state.applications.findIndex((app) => app.id === id);
+  if (index !== -1) state.applications.splice(index, 1);
 };
 
 const updateApplication = (
@@ -19,20 +20,21 @@ const updateApplication = (
   id: string,
   payload: Partial<Application>,
 ) => {
-  if (!state.applications[id]) return;
-  state.applications[id] = { ...state.applications[id], ...payload };
+  const index = state.applications.findIndex((app) => app.id === id);
+  if (index === -1) return;
+  state.applications[index] = { ...state.applications[index], ...payload };
 };
 
 const resetApplications = (state: ApplicationsState) => {
   state.applications = INITIAL_APPLICATIONS;
 };
 
-const getInitialData = () => {
+const getInitialData = (): Application[] => {
   if (typeof window === "undefined") return [];
 
   try {
     const storeInLocalStorage = JSON.parse(
-      localStorage.getItem("store") || "null",
+      localStorage.getItem(STORAGE_KEY) || "null",
     );
 
     return storeInLocalStorage?.state?.applications || INITIAL_APPLICATIONS;
@@ -54,7 +56,7 @@ const useApplicationsStore = create<ApplicationsState>()(
       resetApplications: () => set(resetApplications),
     })),
     {
-      name: "store",
+      name: STORAGE_KEY,
     },
   ),
 );

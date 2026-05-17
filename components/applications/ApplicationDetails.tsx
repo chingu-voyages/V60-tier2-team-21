@@ -35,7 +35,9 @@ type StatusVariant =
   | "rejected";
 
 const ApplicationDetails = ({ id }: { id: string }) => {
-  const application = useApplicationsStore((state) => state.applications[id]);
+  const application = useApplicationsStore((state) =>
+    state.applications.find((app) => app.id === id),
+  );
   const [editingApplication, setEditingApplication] =
     useState<Application | null>(null);
 

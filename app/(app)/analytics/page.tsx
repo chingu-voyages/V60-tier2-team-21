@@ -14,9 +14,8 @@ import useApplicationsStore from "@/store/applications/useApplicationsStore";
 
 export default function Analytics() {
   const { applications } = useApplicationsStore();
-  const applicationsList = Object.values(applications);
 
-  const applicationsData = Object.values(applicationsList).reduce(
+  const applicationsData = applications.reduce(
     (acc, curr) => {
       acc[curr.status] = (acc[curr.status] || 0) + 1;
       return acc;

@@ -9,7 +9,7 @@ import useApplicationsStore from "@/store/applications/useApplicationsStore";
 const ApplicationsList = () => {
   const applications = useApplicationsStore((state) => state.applications);
 
-  if (!applications || Object.values(applications).length <= 0) {
+  if (!applications || applications.length <= 0) {
     // TODO: improve this
     return (
       <div className="flex flex-col items-center pt-40">
@@ -27,7 +27,7 @@ const ApplicationsList = () => {
   return (
     <section>
       <ul>
-        {Object.values(applications).map((app) => {
+        {applications.map((app) => {
           return (
             <li key={app.id} className="cursor-pointer">
               <Link href={`/applications/${app.id}`} className="py-4 block">
