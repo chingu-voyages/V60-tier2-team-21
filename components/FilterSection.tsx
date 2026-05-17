@@ -1,7 +1,7 @@
 "use client";
 
 import { CalendarIcon, ChevronDown } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { DateRange } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -32,14 +32,7 @@ const defaultStatus: Record<StatusType, boolean> = {
 };
 
 const FilterSection = () => {
-  const applicationsObject = useApplicationsStore(
-    (state) => state.applications,
-  );
-
-  const applications = useMemo(
-    () => Object.values(applicationsObject),
-    [applicationsObject],
-  );
+  const applications = useApplicationsStore((state) => state.applications);
 
   const sortedApplications = [...applications].sort((a, b) =>
     b.date.localeCompare(a.date),

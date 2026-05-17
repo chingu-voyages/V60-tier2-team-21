@@ -1,8 +1,8 @@
 import { type Application, ApplicationStatus } from "./types";
 
 // fake applications until we make it dynamic
-export const INITIAL_APPLICATIONS: Record<string, Application> = {
-  "app-1": {
+export const INITIAL_APPLICATIONS: Application[] = [
+  {
     id: "app-1",
     companyName: "Starlight Labs",
     role: "Product Designer",
@@ -11,7 +11,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     location: "Remote",
     notes: "Referred by Alex from the design community.",
   },
-  "app-2": {
+  {
     id: "app-2",
     companyName: "Neonbyte Health",
     role: "Frontend Engineer",
@@ -20,7 +20,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     location: "Berlin, Germany",
     notes: "Technical interview scheduled for next week.",
   },
-  "app-3": {
+  {
     id: "app-3",
     companyName: "Willow Financial",
     role: "Frontend Engineer",
@@ -29,7 +29,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     location: "London, UK",
     notes: "Offer received, negotiating compensation.",
   },
-  "app-4": {
+  {
     id: "app-4",
     companyName: "Pioneer AI",
     role: "Machine Learning Engineer",
@@ -38,7 +38,7 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     location: "San Francisco, CA",
     notes: "Rejected after final round, good feedback for next time.",
   },
-  "app-5": {
+  {
     id: "app-5",
     companyName: "Catalyst Studios",
     role: "Growth Marketing Lead",
@@ -47,4 +47,4 @@ export const INITIAL_APPLICATIONS: Record<string, Application> = {
     location: "New York, NY",
     notes: "Applied via company website, awaiting response.",
   },
-};
+];

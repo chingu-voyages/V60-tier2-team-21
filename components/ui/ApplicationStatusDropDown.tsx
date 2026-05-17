@@ -22,7 +22,7 @@ export function ApplicationStatusDropDown({ applicationId }: Props) {
     (state) => state,
   );
 
-  const application = applications[applicationId];
+  const application = applications.find((app) => app.id === applicationId);
 
   if (!application) return null;
 

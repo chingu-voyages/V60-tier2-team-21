@@ -16,7 +16,7 @@ export interface Application {
 }
 
 export interface ApplicationsState {
-  applications: Record<string, Application>;
+  applications: Application[];
   addApplication: (application: Application) => void;
   updateApplication: (id: string, payload: Partial<Application>) => void;
   removeApplication: (id: string) => void;
